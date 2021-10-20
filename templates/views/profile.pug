@@ -1,0 +1,9 @@
+extends ../layouts/base
+block content
+  h1.title= `Welcome ${user.display_name}`
+  p
+    a(href="/update") Update your Profile
+  p
+    a(href="/forgot-password") Change your Password
+  p
+    a(href="/delete") Delete your Profile 

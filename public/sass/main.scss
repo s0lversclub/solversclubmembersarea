@@ -1,0 +1,80 @@
+
+@charset "utf-8";
+//@import "~bulma/bulma";
+// Import a Google Font
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+
+// Set your brand colors
+$blue-dark: #00406C;
+$orange: #C99600;
+$grey: #878786;
+$grey-light: #ededed;
+$purple: #8A4D76;
+$white: #ffffff;
+$black: #000000;
+
+
+// Update Bulma's global variables
+$family-sans-serif: "Montserrat", sans-serif;
+$grey-dark: $black;
+$grey-light: $grey;
+$primary: $blue-dark;
+$link: $orange;
+$widescreen-enabled: false;
+$fullhd-enabled: false;
+
+// Update some of Bulma's component variables
+$body-background-color: $white;
+$control-border-width: 1px;
+$input-border-color: $grey-light;
+$input-shadow: none;
+
+
+// Import only what you need from Bulma
+@import "./node_modules/bulma/sass/utilities/_all.sass";
+@import "./node_modules/bulma/sass/base/_all.sass";
+@import "./node_modules/bulma/sass/elements/button.sass";
+@import "./node_modules/bulma/sass/elements/container.sass";
+@import "./node_modules/bulma/sass/elements/title.sass";
+@import "./node_modules/bulma/sass/form/_all.sass";
+@import "./node_modules/bulma/sass/components/navbar.sass";
+@import "./node_modules/bulma/sass/layout/hero.sass";
+@import "./node_modules/bulma/sass/layout/section.sass";
+
+iframe {
+    height: 600px;
+}
+
+/*=============================================
+=            #PAGINATIONS         =
+=============================================*/
+
+.pages {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: $size-4;
+  margin-bottom: $size-4;
+}
+
+.paginate-links {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.paging-input {
+  display: flex;
+  align-items: center;
+
+  input {
+    width: $size-1;
+    margin-left: $size-6;
+    margin-right: $size-6;
+  }
+}
+  .header-image {
+    align-content: center;
+  }
+
+/*=====  End of #PAGINATIONS  ======*/
