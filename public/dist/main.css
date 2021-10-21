@@ -197,7 +197,7 @@ pre {
   font-family: monospace; }
 
 body {
-  color: #000000;
+  color: #00406C;
   font-size: 1em;
   font-weight: 400;
   line-height: 1.5; }
@@ -3854,6 +3854,11 @@ a.navbar-item,
 iframe {
   height: 600px; }
 
+.title,
+.subtitle {
+  color: #00406C;
+  font-weight: bolder; }
+
 /*=============================================
 =            #PAGINATIONS         =
 =============================================*/
@@ -3881,6 +3886,97 @@ iframe {
   align-content: center; }
 
 /*=====  End of #PAGINATIONS  ======*/
+.navbar.is-solvers {
+  background-color: #fff;
+  color: #00406C;
+  font-weight: bolder; }
+
+.navbar.is-solvers .navbar-brand > .navbar-item,
+.navbar.is-solvers .navbar-brand .navbar-link {
+  color: #00406C; }
+
+.navbar.is-solvers .navbar-item img {
+  max-height: 120px; }
+
+.navbar.is-solvers .navbar-brand > a.navbar-item:focus,
+.navbar.is-solvers .navbar-brand > a.navbar-item:hover,
+.navbar.is-solvers .navbar-brand > a.navbar-item.is-active,
+.navbar.is-solvers .navbar-brand .navbar-link:focus,
+.navbar.is-solvers .navbar-brand .navbar-link:hover,
+.navbar.is-solvers .navbar-brand .navbar-link.is-active {
+  background-color: #ffffff;
+  color: #C99600; }
+
+.navbar.is-solvers .navbar-brand .navbar-link::after {
+  border-color: #fff; }
+
+.navbar.is-solvers .navbar-burger {
+  color: #00406C; }
+
+@media screen and (min-width: 1024px) {
+  .navbar.is-solvers .navbar-start > .navbar-item,
+  .navbar.is-solvers .navbar-start > .navbar-link,
+  .navbar.is-solvers .navbar-end > .navbar-item,
+  .navbar.is-solvers .navbar-end .navbar-link {
+    color: #00406C; }
+  .navbar.is-solvers .navbar-start > a.navbar-item:focus,
+  .navbar.is-solvers .navbar-start > a.navbar-item:hover,
+  .navbar.is-solvers .navbar-start > a.navbar-item.is-active,
+  .navbar.is-solvers .navbar-start .navbar-link:focus,
+  .navbar.is-solvers .navbar-start .navbar-link:hover,
+  .navbar.is-solvers .navbar-start .navbar-link.is-active,
+  .navbar.is-solvers .navbar-end > a.navbar-item:focus,
+  .navbar.is-solvers .navbar-end > a.navbar-item:hover,
+  .navbar.is-solvers .navbar-end > a.navbar-item.is-active,
+  .navbar.is-solvers .navbar-end .navbar-link:focus,
+  .navbar.is-solvers .navbar-end .navbar-link:hover,
+  .navbar.is-solvers .navbar-end .navbar-link.is-active {
+    background-color: #fff;
+    color: #00406C; }
+  .navbar.is-solvers .navbar-start .navbar-link::after,
+  .navbar.is-solvers .navbar-end .navbar-link::after {
+    border-color: #fff; }
+  .navbar.is-solvers .navbar-item.has-dropdown:focus .navbar-link,
+  .navbar.is-solvers .navbar-item.has-dropdown:hover .navbar-link,
+  .navbar.is-solvers .navbar-item.has-dropdown.is-active .navbar-link {
+    background-color: #f0f0f0;
+    color: #00406C; }
+  .navbar.is-solvers .navbar-dropdown a.navbar-item.is-active {
+    background-color: #ffffff;
+    color: #00406C; } }
+
+@media screen and (min-width: 1024px) {
+  .navbar.is-footer .navbar-start > .navbar-item,
+  .navbar.is-footer .navbar-start > .navbar-link,
+  .navbar.is-footer .navbar-end > .navbar-item,
+  .navbar.is-footer .navbar-end .navbar-link {
+    color: #C99600;
+    font-size: smaller; }
+  .navbar.is-footer .navbar-start > a.navbar-item:focus,
+  .navbar.is-footer .navbar-start > a.navbar-item:hover,
+  .navbar.is-footer .navbar-start > a.navbar-item.is-active,
+  .navbar.is-footer .navbar-start .navbar-link:focus,
+  .navbar.is-footer .navbar-start .navbar-link:hover,
+  .navbar.is-footer .navbar-start .navbar-link.is-active,
+  .navbar.is-footer .navbar-end > a.navbar-item:focus,
+  .navbar.is-footer .navbar-end > a.navbar-item:hover,
+  .navbar.is-footer .navbar-end > a.navbar-item.is-active,
+  .navbar.is-footer .navbar-end .navbar-link:focus,
+  .navbar.is-footer .navbar-end .navbar-link:hover,
+  .navbar.is-footer .navbar-end .navbar-link.is-active {
+    background-color: #fff;
+    color: #000000; }
+  .navbar.is-footer .navbar-start .navbar-link::after,
+  .navbar.is-footer .navbar-end .navbar-link::after {
+    border-color: #fff; }
+  .navbar.is-footer .navbar-item.has-dropdown:focus .navbar-link,
+  .navbar.is-footer .navbar-item.has-dropdown:hover .navbar-link,
+  .navbar.is-footer .navbar-item.has-dropdown.is-active .navbar-link {
+    background-color: #f0f0f0;
+    color: #C99600; }
+  .navbar.is-footer .navbar-dropdown a.navbar-item.is-active {
+    background-color: #ffffff;
+    color: #C99600; } }
 
 
 /*# sourceMappingURL=main.css.map*/
