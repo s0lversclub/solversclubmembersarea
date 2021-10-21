@@ -236,9 +236,9 @@ exports.sendPasswordResetEmail = async (req, res) => {
   const subject = 'Password Reset link for Solvers Club';
   const { url, to } = req.body;
   const body = `Hello,
-  You requested to have your password reset. Ignore if this is a mistake or you did not make this request. Otherwise, click the link below to reset your password.
-  <a href="http://localhost:7777/${url}">Reset My Password</a>
-  You can also copy and paste this link in your browser URL bar.
+  You requested to have your Solvers Club Member Area password reset. <br> Ignore this email if this is a mistake or you did not make this request.<br>Otherwise, click the link below to reset your password.<br>
+  <a href="http://localhost:7777/${url}">Reset My Password</a><br>
+  You can also copy and paste this link in your browser.
   <a href="http://localhost:7777/${url}">http://localhost:7777/${url}</a>`;
 
   const transporter = nodemailer.createTransport({
