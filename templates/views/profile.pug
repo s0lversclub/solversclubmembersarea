@@ -1,9 +1,31 @@
 extends ../layouts/base
 block content
-  h1.title= `Welcome ${user.display_name}`
+  h1.title= `Welcome, ${user.display_name}!`
+  p="The Member Area is the central hub for all your competitive activity at Solvers Club."
+  br
+  p="First, take a minute to complete your "
+    a(href="/update") Member Profile
+    span=" with some general information about yourself, your competitive interests, your availability to work on challenges, and your professional and academic background. This information is important for other members who might be looking for teammates with specific skills to form a team with."
+  br
+  p="Your profile will be included in our "
+    a(href="/members") Member Directory
+    span=" where it will be shared only with the rest of the Club members."
+  p="You may use the Member Directory to identify other members with whom you might be interested in getting in touch with to form a team."
+  br
+  p="In our "
+    a(href="/discovery") Challenge Discovery
+    span="database you will find the most recent information on the challenges and competitions that may be of interest to you. Check it out!"
+  br
+  p="In order to help you improve your performance, Solvers Club resources are available to all our members. These resources include mentorship from other more experienced members of the community, computing power, technical resources..."
+  p
+    a(href="/resources") Request Resources
+    span=" for your competitions by filling out a form and explaining what you intend to use those resources for."
+  br
   p
     a(href="/update") Update your Profile
+  br
   p
     a(href="/forgot-password") Change your Password
+  br
   p
-    a(href="/delete") Delete your Profile 
+    a(href="/delete") Delete your Profile
