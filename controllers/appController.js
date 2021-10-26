@@ -6,7 +6,13 @@ exports.getIndex = (req, res) => {
 
 exports.getRegister = (req, res) => {
   res.render('register', {
-    title: 'Create an Account',
+    title: 'Submit your Application',
+  });
+};
+
+exports.getJoin = (req, res) => {
+  res.render('join', {
+    title: 'Join The Club',
   });
 };
 
