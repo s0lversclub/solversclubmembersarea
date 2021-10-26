@@ -68,7 +68,7 @@ const isUserApproved = (username) => {
 // End Helper Functions
 
 exports.addUser = async (req, res, next) => {
-  const { fullname, email, username } = req.body;
+  const { fullname, email, username, section, achievements, team, how } = req.body;
 
   const userExists = await findUser(email, username);
 
@@ -84,10 +84,16 @@ exports.addUser = async (req, res, next) => {
       email,
       username,
       display_name: fullname,
+      section: [section],
+      achievements,
+      team,
+      how: how,
     },
     (err, record) => {
       if (err) {
         console.error(err);
+        console.log(section)
+        console.log(how)
         return;
       }
       req.body.id = record.getId();
