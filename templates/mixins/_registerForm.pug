@@ -3,24 +3,59 @@ mixin registerForm
     form(action="/user/add", method="post")
       .field
         label.label(for="fullname") First and Last Name
-          input.input(type='text' name="fullname" id="fullname" placeholder='First and Last Name')
-
+        .control
+          input.input(type='text' name="fullname" id="fullname" placeholder='First and Last Name' required)
+          small="This name will be displayed on your profile page."
 
       .field
         label.label(for="email") Email
-          input.input(type='email' name="email" id="email" placeholder='Email')
-
-
+        .control
+          input.input(type='email' name="email" id="email" placeholder='Email' required)
+          small="You will receive login details here."
       .field
         label.label(for="username") Username
-          input.input(type='text' name="username" id="username" placeholder='Username')
-
+        .control
+          input.input(type='text' name="username" id="username" placeholder='Username' required)
+          small="Required to access your account."
 
       .field
         label.label(for="password") Password
-          input.input(type='password' name="password" id="password" placeholder='Password')
+        .control
+          input.input(type='password' name="password" id="password" placeholder='Password' required)
+          small="Required to access your account."
 
+      .field
+        label.label(for="section") Section
+        .control
+          select.select(name="section" id="section" required)
+            option.input(value="Artificial Intelligence") Artificial Intelligence
+            option.input(value="Cybersecurity") Cybersecurity
+            option.input(value="Blockchain") Blockchain
+            option.input(value="Engineering") Engineering
+            option.input(value="Robotics") Robotics
+            option.input(value="Biotechnology") Biotechnology
+        small="Please, choose the Section you are most interested in. You will be able to change this later if necessary."
+      br
+      .field
+        label.label(for="achievements") What have been your greatest competitive achievements so far?
+        .control
+          textarea.textarea(name="achievements" id="achievements" placeholder='Please describe briefly' required)
 
+      .field
+        label.label(for="team") Why should anyone want to be in a team with you?
+        .control
+          textarea.textarea(name="team" id="team" placeholder='Please describe briefly' required)
+
+      .field
+        label.label(for="how") How did you first hear from us?
+        .control
+          select.select(name="how" id="how" required)
+            option.input(value="Social Media") Social Media
+            option.input(value="Friends") Friends
+            option.input(value="University") University
+            option.input(value="Other") Other
+
+      br
       .field
         .control
           button.button.is-link Create Account
