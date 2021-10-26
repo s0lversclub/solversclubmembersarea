@@ -7,6 +7,7 @@ const userController = require('../controllers/userController');
 /* GET home page. */
 router.get('/', appController.getIndex);
 router.get('/register', appController.getRegister);
+router.get('/join', appController.getJoin);
 router.get('/login', appController.getLogin);
 router.get('/logout', userController.logout);
 router.get('/profile', userController.isLoggedIn, appController.getProfile);
