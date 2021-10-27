@@ -20,12 +20,13 @@ router.get('/discovery', userController.isLoggedIn, appController.getDiscovery);
 router.get('/update', userController.isLoggedIn, appController.getMembersUpdate);
 router.get('/resources', userController.isLoggedIn, appController.getResources);
 router.get('/delete', userController.isLoggedIn, appController.getDelete);
+router.get('/thankyou', appController.getApplied);
 
 router.post(
   '/user/add',
   userController.addUser,
   userController.storePassword,
-  appController.getLogin
+  appController.getApplied
 );
 router.post(
   '/user/auth',
