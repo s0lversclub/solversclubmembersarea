@@ -165,6 +165,9 @@ exports.authenticate = (req, res, next) => {
               res.redirect('/profile');
             } else {
               // Passwords don't match
+              res.render('login', {
+                message: 'Username and password do not match'
+              });
               console.log(err);
             }
           });
