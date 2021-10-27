@@ -33,6 +33,12 @@ exports.getForgetPassword = (req, res) => {
   res.render('forgot');
 };
 
+exports.getActivate = (req, res) => {
+  res.render('activate', {
+    title: 'Activate Account'
+  });
+};
+
 exports.getMembersDirectory = (req, res) => {
   res.render('members', {
     title: 'Directory',
@@ -70,6 +76,13 @@ exports.getDelete = (req, res) => {
 
 exports.getResetPassword = (req, res) => {
   res.render('reset', {
+    token: req.params.token,
+    email: req.query.email,
+  });
+};
+
+exports.getConfirmActivate = (req, res) => {
+  res.render('confirmactivate', {
     token: req.params.token,
     email: req.query.email,
   });
