@@ -22,6 +22,12 @@ exports.getLogin = (req, res) => {
   });
 };
 
+exports.getApplied = (req, res) => {
+  res.render('thankyou', {
+    title: 'Thank you!',
+  });
+};
+
 exports.getProfile = (req, res) => {
   res.render('profile', {
     title: 'Your Profile',
