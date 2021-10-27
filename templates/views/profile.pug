@@ -3,7 +3,7 @@ block content
   h1.title= `Welcome, ${user.display_name}!`
   br
   p.subtitle="Complete your "
-    a(href="/update") Member Profile.
+    a(href=`${user.update}` target="new") Member Profile.
   br
   p.subtitle="Search for other Club members in our "
     a(href="/members") Member Directory.
