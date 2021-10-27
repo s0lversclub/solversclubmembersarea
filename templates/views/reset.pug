@@ -2,20 +2,17 @@ extends ../layouts/base
 include ../mixins/_resetForm
 
 block content
-  h1.title Password Reset
+  h1.title Password Update
 
   if (message)
     .notification.is-success
-      button.delete
       =message
 
   form(action="/user/reset" method="POST")
     .field
       label.label(for="password") New Password
-      .control.has-icons-left
+      .control
         input.input(type='password' name="password" id="password" placeholder='Password')
-        span.icon.is-small.is-left
-          i.fas.fa-lock
 
       input(type="hidden" name="email" value=`${email}`)
       input(type="hidden" name="token" value=`${token}`)
