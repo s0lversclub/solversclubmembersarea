@@ -11,8 +11,10 @@ router.get('/join', appController.getJoin);
 router.get('/login', appController.getLogin);
 router.get('/logout', userController.logout);
 router.get('/profile', userController.isLoggedIn, appController.getProfile);
-router.get('/forgot-password', appController.getForgetPassword);
+router.get('/forgot', appController.getForgetPassword);
+router.get('/activate', appController.getActivate);
 router.get('/login/resetlink/:token', appController.getResetPassword);
+router.get('/activate/activatelink/:token', appController.getConfirmActivate);
 router.get('/members', userController.isLoggedIn, appController.getMembersDirectory);
 router.get('/discovery', userController.isLoggedIn, appController.getDiscovery);
 router.get('/update', userController.isLoggedIn, appController.getMembersUpdate);
@@ -25,7 +27,9 @@ router.post(
   userController.storePassword,
   appController.getLogin
 );
-router.post('/user/auth', userController.authenticate);
+router.post(
+  '/user/auth',
+  userController.authenticate);
 router.post(
   '/user/forgot',
   userController.addToken,
@@ -36,6 +40,17 @@ router.post(
   userController.confirmToken,
   userController.storePassword,
   userController.sendConfirmResetEmail
+);
+router.post(
+  '/user/activate',
+  userController.addActivationToken,
+  userController.sendActivationEmail
+);
+router.post(
+  '/user/confirmactivate',
+  userController.confirmToken,
+  userController.storePassword,
+  userController.sendConfirmActivationEmail
 );
 
 module.exports = router;
