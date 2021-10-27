@@ -287,8 +287,6 @@ exports.addActivationToken = async (req, res, next) => {
   );
 };
 
-
-
 exports.sendPasswordResetEmail = async (req, res) => {
   const subject = 'Password Reset link for Solvers Club';
   const { url, to } = req.body;
