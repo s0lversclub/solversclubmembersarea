@@ -65,6 +65,12 @@ const isUserApproved = (username) => {
   return false;
 };
 
+const generateActivateUrl = (token, email) => {
+  let url = '';
+  url = `activate/activatelink/${token}?${querystring.stringify({ email })}`;
+  return url;
+};
+
 // End Helper Functions
 
 exports.addUser = async (req, res, next) => {
@@ -238,14 +244,59 @@ exports.addToken = async (req, res, next) => {
   );
 };
 
+exports.addActivationToken = async (req, res, next) => {
+  const { username } = req.body;
+  // Check that the user exists. We wrote this helper function already in Part 1
+  const userExists = await findUser(username);
+
+  if (!userExists) {
+    res.render('activate', {
+      message: 'Your email is not registered. You must activate your member account using the email you registered with.',
+    });
+    return;
+  }
+
+  const options = {
+    filterByFormula: `OR(email = '${username}', username = '${username}')`,
+  };
+
+  // Get the user
+  const users = await data.getAirtableRecords(table, options);
+
+  const user = users.map(record => ({
+    id: record.getId(),
+    email: record.get('email'),
+  }));
+
+  const token = generateToken(user[0].id, user[0].email);
+
+  table.update(
+    user[0].id,
+    {
+      token,
+    },
+    (err, record) => {
+      if (err) {
+        console.error(err);
+      }
+
+      req.body.url = generateActivateUrl(token, user[0].email);
+      req.body.to = user[0].email;
+      next();
+    }
+  );
+};
+
+
+
 exports.sendPasswordResetEmail = async (req, res) => {
   const subject = 'Password Reset link for Solvers Club';
   const { url, to } = req.body;
   const body = `Hello,
   You requested to have your Solvers Club Member Area password reset. <br> Ignore this email if this is a mistake or you did not make this request.<br>Otherwise, click the link below to reset your password.<br>
-  <a href="http://localhost:7777/${url}">Reset My Password</a><br>
+  <a href="https://solversclubmembers.herokuapp.com/${url}">Reset My Password</a><br>
   You can also copy and paste this link in your browser.
-  <a href="http://localhost:7777/${url}">http://localhost:7777/${url}</a>`;
+  <a href="https://solversclubmembers.herokuapp.com/${url}">https://solversclubmembers.herokuapp.com/${url}</a>`;
 
   const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
@@ -280,6 +331,78 @@ exports.sendConfirmResetEmail = async (req, res) => {
   const subject = 'Password successfully reset';
   const to = req.body.email;
   const body = `Hello, Your password was successfully reset.`;
+
+  const transporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST,
+    port: process.env.SMTP_PORT,
+    // secure: true,
+    auth: {
+      user: process.env.SMTP_USERNAME,
+      pass: process.env.SMTP_PASSWORD,
+    },
+  });
+
+  const mailOptions = {
+    from: process.env.FROM_EMAIL,
+    to,
+    subject,
+    html: body,
+  };
+
+  transporter.sendMail(mailOptions, (err, info) => {
+    if (err) {
+      console.log(err);
+    } else {
+      // email sent
+      res.render('login');
+    }
+  });
+};
+
+// Account activation emails
+
+exports.sendActivationEmail = async (req, res) => {
+  const subject = 'Solvers Club Account Activation';
+  const { url, to } = req.body;
+  const body = `Hello,
+  You requested to have your Solvers Club account activated. <br> Ignore this email if this is a mistake or you did not make this request.<br>Otherwise, click the link below to activate your account.<br>
+  <a href="https://solversclubmembers.herokuapp.com/${url}">Activate your account</a><br>
+  You can also copy and paste this link in your browser.
+  <a href="https://solversclubmembers.herokuapp.com/${url}">https://solversclubmembers.herokuapp.com/${url}</a>`;
+
+  const transporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST,
+    port: process.env.SMTP_PORT,
+    // secure: true,
+    auth: {
+      user: process.env.SMTP_USERNAME,
+      pass: process.env.SMTP_PASSWORD,
+    },
+  });
+
+  const mailOptions = {
+    from: process.env.FROM_EMAIL,
+    to,
+    subject,
+    html: body,
+  };
+
+  transporter.sendMail(mailOptions, (err, info) => {
+    if (err) {
+      console.log(err);
+    } else {
+      // email sent
+      res.render('activate', {
+        message: 'Please check your email for your account activation link',
+      });
+    }
+  });
+};
+
+exports.sendConfirmActivationEmail = async (req, res) => {
+  const subject = 'Solvers Club Account Activation.';
+  const to = req.body.email;
+  const body = `Hello, Your Solvers Club account was successfully activated. You may now access our <a href="https://solversclubmembers.herokuapp.com/">Members Area.</a>`;
 
   const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
