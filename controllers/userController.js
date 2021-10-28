@@ -366,10 +366,8 @@ exports.sendActivationEmail = async (req, res) => {
   const subject = 'Solvers Club Account Activation';
   const { url, to } = req.body;
   const body = `Hello,
-  You requested to have your Solvers Club account activated. <br> Ignore this email if this is a mistake or you did not make this request.<br>Otherwise, click the link below to activate your account.<br>
-  <a href="https://solversclubmembers.herokuapp.com/${url}">Activate your account</a><br>
-  You can also copy and paste this link in your browser.
-  <a href="https://solversclubmembers.herokuapp.com/${url}">https://solversclubmembers.herokuapp.com/${url}</a>`;
+  You requested to have your Solvers Club account activated. <br> Activation is required for first time users of our Members Area, who had already registered to join Solvers Club through our website.<br>Ignore this email if this is a mistake or you did not make this request.<br>Otherwise, click the link below to activate your account.<br>
+  <a href="https://solversclubmembers.herokuapp.com/${url}">Activate your account</a><br>`;
 
   const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
@@ -394,7 +392,7 @@ exports.sendActivationEmail = async (req, res) => {
     } else {
       // email sent
       res.render('activate', {
-        message: 'Please check your email for your account activation link',
+        message: 'Please, check your email for your account activation link.',
       });
     }
   });
@@ -403,7 +401,7 @@ exports.sendActivationEmail = async (req, res) => {
 exports.sendConfirmActivationEmail = async (req, res) => {
   const subject = 'Solvers Club Account Activation.';
   const to = req.body.email;
-  const body = `Hello, Your Solvers Club account was successfully activated. You may now access our <a href="https://solversclubmembers.herokuapp.com/">Members Area.</a>`;
+  const body = `Hello, Your Solvers Club account was successfully activated.<br> You may now access our <a href="https://solversclubmembers.herokuapp.com/">Members Area.</a> using your email and password.<br>Remember to update your profile to be included in our Member Directory.<br>Thank you and happy solving!`;
 
   const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
