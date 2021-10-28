@@ -21,6 +21,8 @@ router.get('/update', userController.isLoggedIn, appController.getMembersUpdate)
 router.get('/resources', userController.isLoggedIn, appController.getResources);
 router.get('/delete', userController.isLoggedIn, appController.getDelete);
 router.get('/thankyou', appController.getApplied);
+router.get('/tc', appController.getTC);
+router.get('/privacy', appController.getPrivacy);
 
 router.post(
   '/user/add',
