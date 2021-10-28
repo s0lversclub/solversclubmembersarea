@@ -11,9 +11,17 @@ block content
   form(action="/user/activate" method="POST")
     .field
       label.label(for="username") Email
-        input.input(type='email' name="username" id="username")
-
-
+        input.input(type='email' name="username" id="username" required)
+    br
+    p By activating your account you must accept our:
+    br
+    .field
+      a(href="/tc" target="new")="Terms and Conditions "
+        input.checkbox(type='checkbox' name="accept_tc" id="accept_tc" required value="True")
+    .field
+      a(href="privacy" target="new")="Privacy Guidelines "
+        input.checkbox(type='checkbox' name="accept_pg" id="accept_pg" required value="True")
+    br
     .field
       .control
         button.button.is-link Activate Account
