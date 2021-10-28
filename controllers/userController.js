@@ -248,7 +248,7 @@ exports.addToken = async (req, res, next) => {
 };
 
 exports.addActivationToken = async (req, res, next) => {
-  const { username } = req.body;
+  const { username, accept_tc, accept_pg } = req.body;
   // Check that the user exists. We wrote this helper function already in Part 1
   const userExists = await findUser(username);
 
@@ -277,6 +277,8 @@ exports.addActivationToken = async (req, res, next) => {
     user[0].id,
     {
       token,
+      accept_tc,
+      accept_pg
     },
     (err, record) => {
       if (err) {
