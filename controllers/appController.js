@@ -22,6 +22,19 @@ exports.getLogin = (req, res) => {
   });
 };
 
+exports.getTC = (req, res) => {
+  res.render('tc', {
+    title: 'Terms and Conditions',
+  });
+};
+
+exports.getPrivacy = (req, res) => {
+  res.render('privacy', {
+    title: 'Privacy Policy',
+  });
+};
+
+
 exports.getApplied = (req, res) => {
   res.render('thankyou', {
     title: 'Thank you!',
