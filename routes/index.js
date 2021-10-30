@@ -32,7 +32,9 @@ router.post(
 );
 router.post(
   '/user/auth',
-  userController.authenticate);
+  userController.checkUser,
+  userController.authenticate,
+);
 router.post(
   '/user/forgot',
   userController.addToken,
