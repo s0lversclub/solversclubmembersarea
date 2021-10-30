@@ -1,17 +1,4 @@
 extends ../layouts/base
+include ../mixins/_profile
 block content
-  h1.title= `Welcome, ${user.display_name}!`
-  br
-  p.subtitle="Complete your "
-    a(href=`${user.update}` target="new") Member Profile.
-  br
-  p.subtitle="Search for other Club members in our "
-    a(href="/members") Member Directory.
-  br
-  p.subtitle="Browse our "
-    a(href="/discovery") Challenge Discovery
-    span=" database."
-  br
-  p.subtitle
-    a(href="/resources") Request Resources
-    span=" available for our members."
+  +profile(`${user}`)
