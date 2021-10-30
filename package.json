@@ -1,19 +1,19 @@
 {
   "name": "solvers-club",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./start.js",
+    "dev": "node ./start.js",
     "watch": "nodemon ./start.js --ignore public/",
     "assets": "webpack --watch",
-    "dev": "concurrently \"npm run watch\" \"npm run assets\" --names \"💻,📦\" --prefix name",
+    "start": "concurrently \"npm run watch\" \"npm run assets\" --names \"💻,📦\" --prefix name",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "airtable": "0.8.1",
     "bcrypt": "^5.0.0",
-    "bulma": "^0.9.3",
+    "bulma": "^0.7.2",
     "cloudinary": "^1.13.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
