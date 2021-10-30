@@ -10,32 +10,19 @@ const base = new Airtable({
 const table = base('users');
 
 // Start Helper Functions
-const findUser = async (email = undefined, username = undefined) => {
+const findUser = async (email = undefined) => {
   let recordExists = false;
   let options = {};
-
-  if (email && username) {
-    options = {
-      filterByFormula: `OR(email = '${email}', username = '${username}')`,
-    };
-  } else {
-    options = {
-      filterByFormula: `OR(email = '${email}', username = '${email}')`,
-    };
-  }
-
+  options = {
+    filterByFormula: `email = '${email}'`,
+  };
   const users = await data.getAirtableRecords(table, options);
-
   users.filter(user => {
-    if (user.get('email') === email || user.get('username') === username) {
-      return (recordExists = true);
-    }
-    if (user.get('email') === email || user.get('username') === email) {
+    if (user.get('email') === email) {
       return (recordExists = true);
     }
     return false;
   });
-
   return recordExists;
 };
 
@@ -55,13 +42,20 @@ const generateResetUrl = (token, email) => {
   return url;
 };
 
-const isUserApproved = (username) => {
-
-  if (username.get('approval') === 'Approved') {
-    console.log ('Approved');
+const isUserApproved = async (email) => {
+  // const userExists = await findUser(email);
+  // console.log(userExists);
+  // if (!userExists) {
+  //   res.render('login', {
+  //     message: 'This Email does not exist.',
+  //   });
+  //   return;
+  // }
+  if (email.get('approval') === 'Approved') {
+    console.log('Approved');
     return true;
   }
-  console.log ('Rejected');
+  console.log('Pending Approval');
   return false;
 };
 
@@ -74,13 +68,13 @@ const generateActivateUrl = (token, email) => {
 // End Helper Functions
 
 exports.addUser = async (req, res, next) => {
-  const { fullname, email, username, section, achievements, team, how } = req.body;
+  const { fullname, email, section, achievements, team, how } = req.body;
 
-  const userExists = await findUser(email, username);
+  const userExists = await findUser(email);
 
   if (userExists) {
     res.render('login', {
-      message: 'Username or Email already exists!',
+      message: 'Email already exists!',
     });
     return;
   }
@@ -88,7 +82,6 @@ exports.addUser = async (req, res, next) => {
   table.create(
     {
       email,
-      username,
       display_name: fullname,
       section: [section],
       achievements,
@@ -147,10 +140,23 @@ exports.confirmToken = async (req, res, next) => {
   next();
 };
 
+exports.checkUser = async (req, res,next) => {
+  const { email } = req.body;
+  const userExists = await findUser(email);
+  console.log(userExists);
+  if (!userExists) {
+    res.render('login', {
+      message: 'This Email does not exist',
+    });
+    return;
+  }
+  next();
+};
+
 exports.authenticate = (req, res, next) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
   const options = {
-    filterByFormula: `OR(email = '${username}', username = '${username}')`,
+    filterByFormula: `email = '${email}'`,
   };
 
   data
@@ -166,15 +172,16 @@ exports.authenticate = (req, res, next) => {
             } else {
               // Passwords don't match
               res.render('login', {
-                message: 'Username and password do not match'
-              });
-              console.log(err);
+                message: 'Username and password do not match',
+              })
+//              console.log(err);
+              console.log('wrong password');
             }
           });
         }
         else {
           res.render('login', {
-            message: 'Sorry, but your application has not been approved. We normally take 48 hours to review applications. Please contact us on info@solversclub.com if you applied before that, and have not heard back from us.',
+            message: 'Your application is pending approval. We normally take 48 hours to review applications. Please contact us on info@solversclub.com if you applied before that, and have not heard back from us.',
           });
         }
       });
@@ -205,19 +212,18 @@ exports.logout = (req, res) => {
 };
 
 exports.addToken = async (req, res, next) => {
-  const { username } = req.body;
+  const { email } = req.body;
   // Check that the user exists. We wrote this helper function already in Part 1
-  const userExists = await findUser(username);
-
+  const userExists = await findUser(email);
   if (!userExists) {
     res.render('/user/forgot', {
-      message: 'Username or Email already exists!',
+      message: 'Email already exists!',
     });
     return;
   }
 
   const options = {
-    filterByFormula: `OR(email = '${username}', username = '${username}')`,
+    filterByFormula: `email = '${email}'`,
   };
 
   // Get the user
@@ -248,19 +254,19 @@ exports.addToken = async (req, res, next) => {
 };
 
 exports.addActivationToken = async (req, res, next) => {
-  const { username, accept_tc, accept_pg } = req.body;
+  const { email, accept_tc, accept_pg } = req.body;
   // Check that the user exists. We wrote this helper function already in Part 1
-  const userExists = await findUser(username);
+  const userExists = await findUser(email);
 
   if (!userExists) {
     res.render('activate', {
-      message: 'Your email is not registered. You must activate your member account using the email you registered with.',
+      message: 'Your email is not registered. You must activate your account using the email you registered with.',
     });
     return;
   }
 
   const options = {
-    filterByFormula: `OR(email = '${username}', username = '${username}')`,
+    filterByFormula: `email = '${email}'`,
   };
 
   // Get the user
@@ -431,3 +437,18 @@ exports.sendConfirmActivationEmail = async (req, res) => {
     }
   });
 };
+
+// Empty fields
+
+
+
+// //set value for empty fields
+// let discordvalue = ${user.discord};
+// // if (`${user.discord}` === "") {
+// //   discordvalue = "discord value is empty";
+// // }
+// // else {
+// //   discordvalue = "discord value is not empty";
+// // }
+// document.getElementById("discord").innerHTML = discordvalue;
+// console.log(discordvalue);
