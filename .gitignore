@@ -1,3 +1,5 @@
-./node_modules
-./variables.env
-**/.DS_Store
+node_modules
+variables.env
+.DS_Store
+public/dist
+yarn.lock
