@@ -2,13 +2,13 @@ extends ../layouts/base
 include ../mixins/_resetForm
 
 block content
-  h1.title Password Update
+  h1.title Password Activation
 
   if (message)
     .notification.is-success
       =message
 
-  form(action="/user/reset" method="POST")
+  form(action="/user/confirmactivate" method="POST")
     .field
       label.label(for="password") New Password
       .control
