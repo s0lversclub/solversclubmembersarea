@@ -1,5 +1,74 @@
 extends ../layouts/base
 block content
-  p="Search or browse through the active Solvers Club Members Directory to find other members who share your passion for challenges and whom you might want to form a team with."
-  br
-  iframe(src='https://solvers-club-members-directory.super.site/', frameborder=`0`, onmousewheel=``, width=`100%`, height=`533px`, style=`background: transparent; border: 0px solid #ccc;`)
+  div.tabs-with-content
+    div.tabs
+      ul
+        li
+          a PERSONAL
+        li
+          a SOCIAL
+        li
+          a COMPETITIVE
+        li
+          a ACADEMIC
+        li
+          a PROFESSIONAL
+    div
+      section(class="tab-content")
+        ul
+          li
+            span.cat=`Name: `
+            span.value=`${user.display_name}`
+          li
+            span.cat=`Section: `
+            span.value=`${user.section}`
+          li
+            span.cat=`Role: `
+            span.value=`${user.role}`
+          li
+            span.cat=`Country: `
+            span.value=`${user.country}`
+          li
+            span.cat=`Language: `
+            span.value=`${user.languages}`
+      section(class="tab-content")
+        ul
+          li
+            span.cat='Discord: '
+            span.value=`${user.discord}`
+          li
+            span.cat='Twitter: '
+            span.value=`${user.twitter}`
+          li
+            span.cat='LinkedIn: '
+            span.value=`${user.linkedin}`
+          li
+            span.cat='Kaggle: '
+            span.value=`${user.kaggle}`
+          li
+            span.cat='GitHub: '
+            span.value=`${user.github}`
+      section(class="tab-content")
+        ul
+          li
+            span.cat=`Preferences: `
+            span.value=`${user.comp_pref}`
+          li
+            span.cat=`Availability: `
+            span.value=`${user.availability}`
+      section(class="tab-content")
+        ul
+          li
+            span.cat=`Highest Degree: `
+            span.value=`${user.degree}`
+          li
+            span.cat=`Areas of Study: `
+            span.value=`${user.studies}`
+      section(class="tab-content")
+        ul
+          li
+            span.cat=`Programming Languages: `
+            span.value=`${user.prog_lang}`
+          li
+            span.cat=`Industry Expertise: `
+            span.value=`${user.ind_exp}`
