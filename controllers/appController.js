@@ -22,6 +22,25 @@ exports.getLogin = (req, res) => {
   });
 };
 
+exports.getTC = (req, res) => {
+  res.render('tc', {
+    title: 'Terms and Conditions',
+  });
+};
+
+exports.getPrivacy = (req, res) => {
+  res.render('privacy', {
+    title: 'Privacy Policy',
+  });
+};
+
+
+exports.getApplied = (req, res) => {
+  res.render('thankyou', {
+    title: 'Thank you!',
+  });
+};
+
 exports.getProfile = (req, res) => {
   res.render('profile', {
     title: 'Your Profile',
@@ -31,6 +50,12 @@ exports.getProfile = (req, res) => {
 
 exports.getForgetPassword = (req, res) => {
   res.render('forgot');
+};
+
+exports.getActivate = (req, res) => {
+  res.render('activate', {
+    title: 'Activate Account'
+  });
 };
 
 exports.getMembersDirectory = (req, res) => {
@@ -70,6 +95,13 @@ exports.getDelete = (req, res) => {
 
 exports.getResetPassword = (req, res) => {
   res.render('reset', {
+    token: req.params.token,
+    email: req.query.email,
+  });
+};
+
+exports.getConfirmActivate = (req, res) => {
+  res.render('confirmactivate', {
     token: req.params.token,
     email: req.query.email,
   });
