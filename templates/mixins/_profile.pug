@@ -1,0 +1,80 @@
+mixin profile()
+  div.card
+    div.card-header-title=`${user.display_name}`
+    div.tabs-with-content
+      div.tabs
+        ul
+          li
+            a
+              span.icon.is-small
+                i.fas.fa-user
+              span="Personal"
+          li
+            a
+              span.icon.is-small
+                i.fas.fa-bullhorn
+              span="Social"
+          li
+            a
+              span.icon.is-small
+                i.fas.fa-graduation-cap
+              span="Academic"
+          li
+            a
+              span.icon.is-small
+                i.fas.fa-briefcase
+              span="Professional"
+      div
+        section(class="tab-content")
+          ul
+            li
+              span.cat=`Section: `
+              span.value=`${user.section}`
+            li
+              span.cat=`Role: `
+              span.value=`${user.role}`
+            li
+              span.cat=`Country: `
+              span.value=`${user.country}`
+            li
+              span.cat=`Spoken Languages: `
+              span.value=`${user.languages}`
+            li
+              span.cat=`Preferences: `
+              span.value=`${user.comp_pref}`
+            li
+              span.cat=`Availability: `
+              span.value=`${user.availability}`
+        section(class="tab-content")
+          ul
+            li
+              span.cat=`Discord: `
+              span.value=`${user.discord}`
+            li
+              span.cat=`Twitter: `
+              a.value(href=`https://www.twitter.com/${user.twitter}`)=`${user.twitter}`
+            li
+              span.cat=`Linkedin: `
+              a.value(href="${user.linkedin}")=`${user.linkedin}`
+            li
+              span.cat=`Kaggle: `
+              a.value(href="${user.kaggle}")=`${user.kaggle}`
+            li
+              span.cat=`GitHub: `
+              a.value(href="${user.github}")=`${user.github}`
+        section(class="tab-content")
+          ul
+            li
+              span.cat=`Highest Degree: `
+              span.value=`${user.degree}`
+            li
+              span.cat=`Areas of Study: `
+              span.value=`${user.studies}`
+        section(class="tab-content")
+          ul
+            li
+              span.cat=`Programming Languages: `
+              span.value=`${user.prog_lang}`
+            li
+              span.cat=`Industry Expertise: `
+              span.value=`${user.ind_exp}`
