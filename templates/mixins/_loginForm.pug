@@ -1,9 +1,9 @@
 mixin loginForm
   form(action="/user/auth" method="POST")
     .field
-      label.label(for="username") Email or Username
+      label.label(for="email") Email
       .control
-        input.input(type='text' name="username" id="username" placeholder='Email or username')
+        input.input(type='email' name="email" id="email" placeholder='Email')
 
     .field
       label.label(for="password") Password
