@@ -1,3 +1,96 @@
 extends ../layouts/base
 block content
-  iframe(class=`airtable-embed`,src=`https://airtable.com/embed/shrlY6GiBMqaniaRK`,frameborder=`0`, onmousewheel=``, width=`100%`, height=`533px`, style=`background: transparent; border: 1px solid #ccc;`)
+  div.content
+    div(class="content is-large")
+      h1
+        .is-orange="Request Resources"
+      if (message)
+        .notification
+          =message
+    h3 Solvers Club members may access our exclusive resources in order to improve their performance in the competitions they are participating in.
+    h3 These resources are scarce and therefore are to be used responsibly and fairly by our members.
+    h3 Please complete the following application to request resources, we will get back to you within the next 48 hours.
+    .box
+      form(action="/user/request", method="post")
+        .field
+          label.label(for="teamcaptain") Team Captain
+            small.is-grey="  (Email of the team captain making the request.)"
+          .control
+            input.input(type='email' name="teamcaptain" id="teamcaptain" placeholder='Email' required)
+        .field
+          label.label(for="team2") Team Member 2
+          .control
+            input.input(type='email' name="team2" id="team2" placeholder='Email')
+        .field
+          label.label(for="team3") Team Member 3
+          .control
+            input.input(type='email' name="team3" id="team3" placeholder='Email')
+        .field
+          label.label(for="team4") Team Member 4
+          .control
+            input.input(type='email' name="team4" id="team4" placeholder='Email')
+        .field
+          label.label(for="team5") Team Member 5
+          .control
+            input.input(type='email' name="team5" id="team5" placeholder='Email')
+        .field
+          label.label(for="section") Section
+          .control
+            select.select(name="section" id="section" required)
+              option.input(value="AI") Artificial Intelligence
+              option.input(value="Cybersecurity") Cybersecurity
+              option.input(value="Blockchain") Blockchain
+              option.input(value="Engineering") Engineering
+              option.input(value="Robotics") Robotics
+              option.input(value="Biotechnology") Biotechnology
+        .field
+          label.label(for="platform") Challenge Organizer / Platform
+          .control
+            input.input(type='text' name="platform" id="platform" placeholder='Challenge Platform')
+        .field
+          label.label(for="title") Challenge Title
+          .control
+            input.input(type='text' name="title" id="title" placeholder='Name of the competition')
+        .field
+          label.label(for="link") Challenge Link
+            small.is-grey="  (Link to the official site including the rules of the challenge.)"
+          .control
+            input.input(type='text' name="link" id="link" placeholder='Challenge Link')
+        .field
+          label.label(for="deadline") Submission Deadline
+          .control
+            input.input(type='date' name="deadline" id="deadline" placeholder='DD/MM/YYYY')
+        .field
+          label.label(for="resources") Type of Resources
+            small.is-grey="  (What type of resources do you need?)"
+          .control
+            input.input(type='text' name="resources" id="resources" placeholder='Computing capacity, technical equipment, software, funding, publications, experts...')
+        .field
+          label.label(for="resources_detail") Resources Detail
+            small.is-grey="  (Explain as precisely as possible what you require.)"
+          .control
+            textarea.textarea(name="resources_detail" id="resources_detail" placeholder='Describe in detail.')
+        .field
+          label.label(for="budget") Budget
+            small.is-grey="  (Estimate the value of your request in €.)"
+          .control
+            input.input(type="text" name="budget" id="budget" placeholder='Budget')
+        .field
+          label.label(for="use") Intended Use
+            small.is-grey="  (What do you intend to use the resources for?)"
+          .control
+            textarea.textarea(name="use" id="use" placeholder='Describe in detail.')
+        .field
+          label.label(for="contributions") Community Contribution
+            small.is-grey="  (How do you expect to contribute to help the Solvers Club community develop?)"
+          .control
+            textarea.textarea(name="contributions" id="contributions" placeholder='Describe in detail.')
+        .field
+          label.label(for="awareness") Awareness Generation
+            small.is-grey="  (What do you propose to do in order to increase awareness of the Solvers Club?)"
+          .control
+            textarea.textarea(name="awareness" id="awareness" placeholder='Describe in detail.')
+        br
+        .field
+          .control
+            button.button.is-link Submit Request
