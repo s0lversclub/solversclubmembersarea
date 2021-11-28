@@ -1,0 +1,10 @@
+extends ../layouts/base
+include ../mixins/_dirprofile
+block content
+  div.content
+    div(class="content is-large")
+      h1
+        .is-orange Member Profile
+  .container
+    +dirprofile
+    a(href="/members") <- Back
