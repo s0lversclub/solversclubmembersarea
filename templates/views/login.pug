@@ -2,14 +2,17 @@ extends ../layouts/base
 include ../mixins/_loginForm
 
 block content
-  h1.title Log In
+  div(class="content is-large")
+    h1
+      .is-orange Log In
 
   if (message)
     .notification
       =message
   br
-  br
-  div.box
-    +loginForm
-    small
-      a(href="/forgot") Lost your password?
+  div.content
+    div.box
+      +loginForm
+      br
+      small
+        a(href="/forgot") Lost your password?
