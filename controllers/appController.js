@@ -1,7 +1,11 @@
 exports.getIndex = (req, res) => {
   res.render('index', {
-    title: 'Solvers Club Member Area',
+    title: 'Solvers Club',
   });
+};
+
+exports.getHome = (req, res) => {
+  res.render('membersarea');
 };
 
 exports.getRegister = (req, res) => {
