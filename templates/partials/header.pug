@@ -1,17 +1,18 @@
-block.container
-nav.navbar.is-solvers(role="navigation", aria-label="main navigation")
-  .container
-    .navbar-brand
-      a.navbar-item(href="/")
-        img(src="/images/iconowebSL.png")
-      a.navbar-burger(role="button", data-target="navMenu", aria-label="menu", aria-expanded="false")
-        span(aria-hidden="true")
-        span(aria-hidden="true")
-        span(aria-hidden="true")
-    .navbar-menu(id="navMenu")
-      .navbar-start
-        a.navbar-item(href="/profile") MY PROFILE
-        a.navbar-item(href="/members") DIRECTORY
-        a.navbar-item(href="/discovery") CHALLENGES
-        a.navbar-item(href="https://airtable.com/embed/shrlY6GiBMqaniaRK" target="new") RESOURCES
-        a.navbar-item(href="/logout") LOGOUT
+include ../mixins/_loginForm
+.container
+  nav.navbar(role="navigation", aria-label="main navigation")
+      div.navbar-brand
+        .navbar-item
+          a(href="/")
+            img(src="/images/logoweb4.png")
+        a.navbar-burger(role="button", data-target="navMenu", aria-label="menu", aria-expanded="false")
+          span(aria-hidden="true")
+          span(aria-hidden="true")
+          span(aria-hidden="true")
+      div.navbar-menu(id="navMenu")
+        div.navbar-start
+          a.navbar-item(href="/join" target="new") Join the Club
+          a.navbar-item(href="/profile") My Profile
+          a.navbar-item(href="/members") Directory
+          a.navbar-item(href="/discovery") Challenges
+          a.navbar-item(href="/resources") Resources
