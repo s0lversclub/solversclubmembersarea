@@ -2,11 +2,14 @@ extends ../layouts/base
 include ../mixins/_registerForm
 
 block content
-  h1.title Join the Club
-  p="Tell us a little bit more about yourself by completing the following application. All fields are required."
-  p="You will hear back from us within the next 48 hours."
-  p="Please contact us on "
-    a(href="mailto:info@solversclub.com") info@solversclub.com
-    span=" if you have any issues."
-  br
-  +registerForm
+  div.content
+    div(class="content is-large")
+      h1
+        .is-orange Join the Club
+    h3 Tell us a little bit more about yourself by completing the following application. All fields are required.
+    h3 You will hear back from us within the next 48 hours.
+    h3="Please contact us on "
+      a(href="mailto:info@solversclub.com") info@solversclub.com
+      span=" if you have any issues."
+    br
+    +registerForm
