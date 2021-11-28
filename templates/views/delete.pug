@@ -1,3 +1,21 @@
 extends ../layouts/base
 block content
-  p="To delete your profile, please send an email to info@solversclub.com from the address you registered stating DELETE as the subject."
+  div.content
+    div.columns
+      div.column.is-2
+        a(href="/profile") My Profile
+      div.column.is-2
+        a(href="/update") Update Profile
+      div.column.is-2
+        a(href="/delete") Delete Profile
+      div.column.is-2
+        a(href="/forgot") Change Pass.
+      div.column.is-2
+        a(href="/logout") Logout
+    div(class="content is-large")
+      h1
+        .is-orange Delete Profile
+    h3 To delete your profile, please send an email to
+      a(href="mailto:info@solversclub.com")=" info@solversclub.com"
+      span=" from the address you registered with stating DELETE in the subject."
+    h3 We will delete you from the website within the next 48 hours.
