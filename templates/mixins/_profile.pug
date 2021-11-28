@@ -1,80 +1,92 @@
-mixin profile()
-  div.card
-    div.card-header-title=`${user.display_name}`
-    div.tabs-with-content
-      div.tabs
-        ul
-          li
-            a
-              span.icon.is-small
-                i.fas.fa-user
-              span="Personal"
-          li
-            a
-              span.icon.is-small
-                i.fas.fa-bullhorn
-              span="Social"
-          li
-            a
-              span.icon.is-small
-                i.fas.fa-graduation-cap
-              span="Academic"
-          li
-            a
-              span.icon.is-small
-                i.fas.fa-briefcase
-              span="Professional"
-      div
-        section(class="tab-content")
+mixin profile
+  - var name = `${user.display_name}`;
+  - if (name === 'undefined') {name = '-';};
+  - var section = `${user.section}`;
+  - if (section === 'undefined') {section = '-';};
+  - var role = `${user.role}`;
+  - if (role === 'undefined') {role = '-';};
+  - var discord = `${user.discord}`;
+  - if (discord === 'undefined') {discord = '-';};
+  - var country = `${user.country}`;
+  - if (country === 'undefined') {country = '-';};
+  - var languages = `${user.languages}`;
+  - if (languages === 'undefined') {languages = '-';};
+  - var comp_pref = `${user.comp_pref}`;
+  - if (comp_pref === 'undefined') {comp_pref = '-';};
+  - var availability = `${user.availability}`;
+  - if (availability === 'undefined') {availability = '-';};
+  - var twitter = `${user.twitter}`;
+  - if (twitter === 'undefined') {twitter = '-';};
+  - var linkedin = `${user.linkedin}`;
+  - if (linkedin === 'undefined') {linkedin = '-';};
+  - var github = `${user.github}`;
+  - if (github === 'undefined') {github = '';};
+  - var kaggle = `${user.kaggle}`;
+  - if (kaggle === 'undefined') {kaggle = '';};
+  - var degree = `${user.degree}`;
+  - if (degree === 'undefined') {degree = '-';};
+  - var studies = `${user.studies}`;
+  - if (studies === 'undefined') {studies = '-';};
+  - var prog_lang = `${user.prog_lang}`;
+  - if (prog_lang === 'undefined') {prog_lang = '-';};
+  - var ind_exp = `${user.ind_exp}`;
+  - if (ind_exp === 'undefined') {ind_exp = '-';};
+
+
+
+  div.content
+    div.box
+      h3.is-4= name
+      p.is-grey(class="subtitle is-6")= role
+      div.tabs-with-content
+        div.tabs.is-boxed
           ul
             li
-              span.cat=`Section: `
-              span.value=`${user.section}`
+              p
+                a Personal
             li
-              span.cat=`Role: `
-              span.value=`${user.role}`
+              p
+                a Social
             li
-              span.cat=`Country: `
-              span.value=`${user.country}`
+              p
+                a Academic
             li
-              span.cat=`Spoken Languages: `
-              span.value=`${user.languages}`
-            li
-              span.cat=`Preferences: `
-              span.value=`${user.comp_pref}`
-            li
-              span.cat=`Availability: `
-              span.value=`${user.availability}`
-        section(class="tab-content")
-          ul
-            li
-              span.cat=`Discord: `
-              span.value=`${user.discord}`
-            li
-              span.cat=`Twitter: `
-              a.value(href=`https://www.twitter.com/${user.twitter}`)=`${user.twitter}`
-            li
-              span.cat=`Linkedin: `
-              a.value(href="${user.linkedin}")=`${user.linkedin}`
-            li
-              span.cat=`Kaggle: `
-              a.value(href="${user.kaggle}")=`${user.kaggle}`
-            li
-              span.cat=`GitHub: `
-              a.value(href="${user.github}")=`${user.github}`
-        section(class="tab-content")
-          ul
-            li
-              span.cat=`Highest Degree: `
-              span.value=`${user.degree}`
-            li
-              span.cat=`Areas of Study: `
-              span.value=`${user.studies}`
-        section(class="tab-content")
-          ul
-            li
-              span.cat=`Programming Languages: `
-              span.value=`${user.prog_lang}`
-            li
-              span.cat=`Industry Expertise: `
-              span.value=`${user.ind_exp}`
+              p
+                a Professional
+
+        div.tab-content
+          .cat Section:
+          p.value= section
+          .cat Country:
+          p.value= country
+          .cat Spoken Languages:
+          p.value= languages
+          .cat Preferences:
+          p.value= comp_pref
+          .cat Availability:
+          p.value= availability
+        div.tab-content
+          .cat=`Discord: `
+          p.value= discord
+          .cat=`Twitter: `
+          p
+            a(href=`https://www.twitter.com/`)= twitter
+          .cat=`Linkedin: `
+          p
+            a(href=linkedin)= linkedin
+          .cat=`Kaggle: `
+          p
+            a(href=kaggle)= kaggle
+          .cat=`GitHub: `
+          p
+            a(href=github)= github
+        div.tab-content
+          .cat=`Highest Degree: `
+          p.value= degree
+          .cat=`Areas of Study: `
+          p.value= studies
+        div.tab-content
+          .cat=`Programming Languages: `
+          p.value= prog_lang
+          .cat=`Industry Expertise: `
+          p.value= ind_exp
