@@ -124,6 +124,23 @@ document.addEventListener('DOMContentLoaded', function () {
         $target.classList.toggle('is-active');
       });
     });
+  } // Get all "modal-close" elements
+
+
+  var $modals = Array.prototype.slice.call(document.querySelectorAll('.modal-close'), 0); // Check if there are any modal-close elements
+
+  if ($modals.length > 0) {
+    // Add a click event on each of them
+    $modals.forEach(function (el) {
+      el.addEventListener('click', function () {
+        // Get the target from the "data-target" attribute
+        var target = el.dataset.target;
+        var $target = document.getElementById(target); // Toggle the "is-active" class on the modal element
+
+        el.classList.toggle('is-active');
+        $target.classList.toggle('is-active');
+      });
+    });
   } //toggle tabs and content
 
 
