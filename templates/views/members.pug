@@ -1,4 +1,44 @@
 extends ../layouts/base
-include ../mixins/_profile
 block content
-  p Sorry, we are currently working on this. Come back later.
+  div(class="content is-large")
+    h1
+      .is-orange Members Directory
+  div.content
+    h3 Click on the Name to access the individual profile of each member.
+    br
+    table.table
+      thead
+        tr
+          th
+            h3
+              .is-orange Name
+          th
+            h3
+              .is-orange Section
+          th
+            h3
+              .is-orange Role
+          th
+            h3
+              .is-orange Discord
+
+      tbody
+        each n,i in user
+          - var name = `${user[i].display_name}`;
+          - if (name === 'undefined') {name = '-';};
+          - var section = `${user[i].section}`;
+          - if (section === 'undefined') {section = '-';};
+          - var role = `${user[i].role}`;
+          - if (role === 'undefined') {role = '-';};
+          - var discord = `${user[i].discord}`;
+          - if (discord === 'undefined') {discord = '-';};
+
+          form(action="/user/dirprof" method="POST")
+            input(type="hidden" id="email" name="email" value=`${user[i].email}`)
+            tr
+              td
+                a
+                  button.button.is-text-button.is-orange= name
+              td= section
+              td= role
+              td= discord
