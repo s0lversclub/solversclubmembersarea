@@ -1,16 +1,320 @@
 extends ../layouts/base
 
 block content
-  h1.title="Members Area"
+  p.is-grey Challenges · Competitions · Hackathons · Bounties · Contests · Moonshots
   br
-  p.subtitle="Already a member? "
-    a(href="/login") Sign In
+  div(class="content is-large")
+    h1
+      .is-orange What is Solvers Club?
   br
-  p.subtitle="If you haven't done so already "
-    a(href="/activate") Activate your Account
-  br
-  p.subtitle="Not registered yet? "
-    a(href="/join") Join The Club
-  br
-  p.subtitle="Want to learn more? Visit "
-    a(href="https://www.solversclub.com", target="new") SolversClub.com
+  div(class="columns is-vcentered")
+    div.column
+      div.content
+        h3 We are a community of innovators competing to solve the world’s toughest problems.
+        h3 We help our members form teams and provide them with everything they need to improve their performance:
+          strong=" networking with other Solvers, expert coaches, technical resources, funding…"
+    div.column.is-7
+      figure.media-right
+        iframe(src="https://www.youtube.com/embed/SzCJ8blNUBk?controls=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
+  div.content
+    div.columns
+      div.column
+        div.box
+          h4
+            span Active
+            .is-grey members
+          div(class="content is-large")
+            h1
+              .is-orange +100
+      div.column
+        div.box
+          h4
+            .is-grey Teams
+            span formed
+          div(class="content is-large")
+            h1
+              .is-orange +20
+      div.column
+        div.box
+          h4
+            span Resources
+            .is-grey Treasury
+          div(class="content is-large")
+            h1
+              .is-orange -
+  hr
+  section.section
+    div(class="content is-large")
+      h1
+        .is-orange Who is it for?
+    div.content
+      ul
+        li
+          h3 Do you like solving problems, puzzles and riddles?
+        li
+          h3 Do you have fun participating in competitions and challenges?
+        li
+          h3 Do you deliver the best version of yourself while competing with others?
+        li
+          h3 Do you like receiving recognition for your achievements?
+        li
+          h3 Do you feel like you should use your abilities to make an impact on the world?
+      h3 If you answered yes, then you might be a
+        strong=" Solver."
+      h3
+        strong Join Solvers Club now and meet other innovators who share your same passion for participating in challenges and competitions.
+    .field
+      .control
+        a(href="/join")
+          button.button.is-link.is-large Join the Club
+
+  hr
+  section.section
+    div(class="content is-large")
+      h1
+        .is-orange Why join?
+    div.content
+      div.columns
+        div.column
+          div.box
+            div.content
+              h2
+                .is-orange 1. Learn and improve
+              h3 Develop technical skills by facing real world problems forming a team with other experts.
+        div.column
+          div.box
+            div.content
+              h2
+                .is-orange 2. Develop your career
+              h3 Network with other Solvers and companies while you build your resumé with practical experience.
+        div.column
+          div.box
+            div.content
+              h2
+                .is-orange 3. Make a positive impact
+              h3 Put your skills to work on challenges that you actually care for and can make a difference in the world.
+      div.columns
+        div.column
+          div.box
+            div.content
+              h2
+                .is-orange 4. Intellectual challenge
+              h3 Put your technical and creative abilities to the test by competing, and discover your true worth.
+        div.column
+          div.box
+            div.content
+              h2
+                .is-orange 5. Obtain recognition
+              h3 Earn bragging rights within your field by participating in some of the world's most complex challenges.
+        div.column
+          div.box
+            div.content
+              h2
+                .is-orange 6. Have fun and meet people!
+              h3 Form part of an intellectually stimulating community formed by Solvers like yourself.
+  hr
+  section.section
+    div(class="content is-large")
+      h1
+        .is-orange Our Sections
+    div.content
+      h3 Solvers Club is organized in six sections. Think of these as the different sports you can practice in a Sports Club. You may join as many Sections as you like.
+    br
+    div.columns.has-text-centered
+      div.column
+        img(src="/images/ai.jpg")
+
+      div.column
+        img(src="/images/blockchain.jpg")
+
+      div.column
+        img(src="/images/security.jpg")
+
+      div.column
+        img(src="/images/general.jpg")
+
+      div.column
+        img(src="/images/robotics.jpg")
+
+      div.column
+        img(src="/images/biotech.jpg")
+
+    br
+    div.content
+      h3 Each Section has its own budget and resources, tailored to the specific characteristics of the most common challenges in the area.
+  hr
+  section.section
+    div(class="content is-large")
+      h1
+        .is-orange Competitions we participate in
+    div.content
+      h3 We do not organize challenges or hackathons ourselves. We help people who participate reach their goals in the competitions they decide to participate in.
+      h3 These are some examples of the competitions our members participate in:
+      div.columns.has-text-centered(class="columns is-vcentered")
+        div.column
+          div.box
+            div.content
+              h3
+                .is-orange Competitive communities
+              a(href="https://www.kaggle.com" target="new")
+                img(src="/images/kagglelogo.png")
+        div.column
+          div.content
+            div.box
+              h3
+                .is-orange Hackathons & Bounties
+              a(href="https://www.gitcoin.co" target="new")
+                img(src="/images/gitcoinlogo.png")
+        div.column
+          div.content
+            div.box
+              h3
+                .is-orange Open Innovation
+              a(href="https://innocentive.wazoku.com/" target="new")
+                img(src="/images/innocentivelogo.png")
+        div.column
+          div.box
+            div.content
+              h3
+                .is-orange Moonshots & Entrepreneurship
+              a(href="https://www.xprize.org" target="new")
+                img(src="/images/xprizelogo.png")
+
+
+  hr
+  section.section
+    div(class="content is-large")
+      h1
+        .is-orange How does it work?
+
+    div.columns
+      div.column
+        div.box
+          div.content
+            h2
+              .is-orange 1. Apply
+            h3 Submit your application
+              a(href="/join")=" here. "
+              span="There are no requirements other than that you are willing to make an honest commitment to your team."
+      div.column
+        div.box
+          div.content
+            h2
+              .is-orange 2. Join
+            h3 If your application is successful you will be invited to join the Solvers Club. This includes gaining access to the Members Area and our Discord server.
+      div.column
+        div.box
+          div.content
+            h2
+              .is-orange 3. Discover
+            h3 Explore our Challenge Discovery database to find competitions from different platforms and technologies that you might be interested in participating in.
+    div.columns
+      div.column
+        div.box
+          div.content
+            h2
+              .is-orange 4. Meet
+            h3 Network and interact with the rest of the community and find teammates who share common interests and have complementary skills to yours.
+      div.column
+        div.box
+          div.content
+            h2
+              .is-orange 5. Share
+            h3 Share the club’s resources (coaches, technical resources, computing capacity…) and use them to help you improve your performance.
+      div.column
+        div.box
+          div.content
+            h2
+              .is-orange 6. Compete
+            h3 With the right team and equipped with the Club's resources, all that's left is to apply your skills to the competitions you decide.
+  hr
+  section.section
+    div(class="content is-large")
+      h1
+        .is-orange Resources
+    div.content
+      h3 As a Solvers Club Member you will have access to our exclusive resources to help you in your competitive efforts.
+      br
+      div.columns
+        div.column
+          div.columns
+            div.column.is-2
+              h1
+                span.icon.is-orange.is-large
+                  i.fas.fa-chalkboard-teacher
+            div.column
+              h1 Coaches
+              h4
+                .is-grey Participate alongside more experienced competitors.
+        div.column
+          div.columns
+            div.column.is-2
+              h1
+                span.icon.is-orange.is-large
+                  i.fas.fa-cloud
+            div.column
+              h1 Cloud GPUs
+              h4
+                .is-grey Access the most advanced computing resources.
+        div.column
+          div.columns
+            div.column.is-2
+              h1
+                span.icon.is-orange.is-large
+                  i.fas.fa-book
+            div.column
+              h1 Publications
+              h4
+                .is-grey Consult all the technical papers you may need.
+      br
+      div.columns
+        div.column
+          div.columns
+            div.column.is-2
+              h1
+                span.icon.is-orange.is-large
+                  i.fas.fa-glasses
+            div.column
+              h1 Experts
+              h4
+                .is-grey Consult with subject matter experts on specific topics.
+        div.column
+          div.columns
+            div.column.is-2
+              h1
+                span.icon.is-orange.is-large
+                  i.fas.fa-flask
+            div.column
+              h1 Equipment
+              h4
+                .is-grey Access specific technical equipment.
+        div.column
+          div.columns
+            div.column.is-2
+              h1
+                span.icon.is-orange.is-large
+                  i.fas.fa-dollar-sign
+            div.column
+              h1 Funding
+              h4
+                .is-grey Receive funds to assist with your competition efforts.
+
+
+  hr
+  section.section
+    div(class="content is-large")
+        h1
+          .is-orange How much does it cost?
+    div.content
+      h2
+        .is-grey Nothing. Zero. Nada.
+      h3 We do not charge our members for using the Club's services and resources.
+      h3 We don't keep a part of the prizes that may be won by our members.
+      h3 We work with companies that are interested in sponsoring our community.
+      h3 Our sponsors come to us looking for talent to hire for their teams, or to help them solve a specific problem.
+      h3 If you authorise us to do so, we may share your personal data with these companies, who might reach out to you to discuss mutually beneficial opportunities.
+      h3 If you do not wish to be contacted, or are not interested in what our sponsors have to offer, that's totally fine also!
+      .field
+        .control
+          a(href="/join")
+            button.button.is-link.is-large Join the Club
