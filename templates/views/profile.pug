@@ -1,4 +1,21 @@
 extends ../layouts/base
 include ../mixins/_profile
 block content
-  +profile(`${user}`)
+  div.content
+    div.columns
+      div.column.is-2
+        a(href="/profile") My Profile
+      div.column.is-2
+        a(href="/update") Update Profile
+      div.column.is-2
+        a(href="/delete") Delete Profile
+      div.column.is-2
+        a(href="/forgot") Change Pass.
+      div.column.is-2
+        a(href="/logout") Logout
+    div(class="content is-large")
+      h1
+        .is-orange My Profile
+
+
+    +profile
