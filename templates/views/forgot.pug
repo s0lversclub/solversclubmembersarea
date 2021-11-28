@@ -1,18 +1,31 @@
 extends ../layouts/base
 
 block content
-  h1.title Password Reset
+  div.content
+    div.columns
+      div.column.is-2
+        a(href="/profile") My Profile
+      div.column.is-2
+        a(href="/update") Update Profile
+      div.column.is-2
+        a(href="/delete") Delete Profile
+      div.column.is-2
+        a(href="/forgot") Change Pass.
+      div.column.is-2
+        a(href="/logout") Logout
+    div(class="content is-large")
+      h1
+        .is-orange Change Password
 
-  if (message)
-    .notification.is-success
-      =message
-
-  form(action="/user/forgot" method="POST")
-    .field
-      label.label(for="username") Email or Username
-        input.input(type='text' name="username" id="username")
-
-
-    .field
-      .control
-        button.button.is-link Reset Password
+    if (message)
+      .notification.is-success
+        =message
+    h3 Introduce the email you registered with and you will receive a link to reset your password.
+    div.box
+      form(action="/user/forgot" method="POST")
+        .field
+          label.label(for="email") Email
+            input.input(type='text' name="email" id="email")
+        .field
+          .control
+            button.button.is-link Reset Password
