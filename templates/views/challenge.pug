@@ -1,0 +1,38 @@
+extends ../layouts/base
+block content
+  - var title = `${challenge[0].title}`;
+  - if (title === 'undefined') {title = '-';};
+  - var section = `${challenge[0].section}`;
+  - if (section === 'undefined') {section = '-';};
+  - var platform = `${challenge[0].platform}`;
+  - if (platform === 'undefined') {platform = '-';};
+  - var status = `${challenge[0].status}`;
+  - if (status === 'undefined') {status = '-';};
+  - var date = `${challenge[0].date}`;
+  - if (date === 'undefined') {date = '-';};
+  - var teams = `${challenge[0].teams}`;
+  - if (teams === 'undefined') {teams = '-';};
+  - var prize = `${challenge[0].prize}`;
+  - if (prize === 'undefined') {prize = '-';};
+  - var link = `${challenge[0].link}`;
+  - if (link === 'undefined') {link = '-';};
+  div.content
+    div(class="content is-large")
+      h1
+        .is-orange Challenge Details
+    div.box
+      h3.is-4= title
+      p.is-grey(class="subtitle is-6")= platform
+      .cat Section:
+      p.value= section
+      .cat Status:
+      p.value= status
+      .cat Deadline:
+      p.value= date
+      .cat Teams:
+      p.value= teams
+      .cat Prizes:
+      p.value= prize
+      .cat Link:
+      p.value
+        a(href=link target="-blank") Access
