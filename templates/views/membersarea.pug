@@ -1,0 +1,12 @@
+extends ../layouts/base
+block content
+  div.content
+    div(class="content is-large")
+      h1
+        .is-orange="Members Area"
+    h3="Already a member? "
+      a(href="/login") Sign In
+    h3="If you haven't done so already "
+      a(href="/activate") Activate your Account
+    h3="Not registered yet? "
+      a(href="/join") Join The Club
