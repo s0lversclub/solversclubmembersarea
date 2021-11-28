@@ -1,8 +1,11 @@
 extends ../layouts/base
 
 block content
-  h1.title=title
-  br
-  p We will review your application and get back to you within the next 48 hours.
-  p If you have not heard back from us by then, please, get in touch with us on 
-    a(href="mailto:info@solversclub.com") info@solversclub.com.
+  div.content
+    div(class="content is-large")
+      h1
+        .is-orange="Thank you!"
+    br
+    if (message)
+      .notification
+        =message
