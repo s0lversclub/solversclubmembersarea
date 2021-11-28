@@ -1,27 +1,35 @@
 extends ../layouts/base
 
 block content
-  h1.title Activate Solvers Club Account
-
-  if (message)
-    .notification.is-success
-      =message
+  div(class="content is-large")
+    h1
+      .is-orange Activate your account
+  div.content
+    h3 If you are already a member of the Solvers Club you may need to activate your account to obtain your login details for the Members Area. (This only applies to members registered prior to November 1st 2021).
+    if (message)
+      .notification.is-success
+        =message
     br
 
-  form(action="/user/activate" method="POST")
-    .field
-      label.label(for="username") Email
-        input.input(type='email' name="username" id="username" required)
-    br
-    p By activating your account you must accept our:
-    br
-    .field
-      a(href="/tc" target="new")="Terms and Conditions "
-        input.checkbox(type='checkbox' name="accept_tc" id="accept_tc" required value="True")
-    .field
-      a(href="privacy" target="new")="Privacy Guidelines "
-        input.checkbox(type='checkbox' name="accept_pg" id="accept_pg" required value="True")
-    br
-    .field
-      .control
-        button.button.is-link Activate Account
+    div.box
+      form(action="/user/activate" method="POST")
+        .field
+          label.label(for="username") Email
+            input.input(type='email' name="username" id="username" required)
+        br
+        h3 By activating your account you agree to our:
+
+        .field
+          h3
+            input.checkbox(type='checkbox' name="accept_tc" id="accept_tc" required value="True")
+            a(href="/tc" target="new")=" Terms and Conditions "
+
+        .field
+          h3
+            input.checkbox(type='checkbox' name="accept_pg" id="accept_pg" required value="True")
+            a(href="privacy" target="new")=" Privacy Guidelines "
+
+        br
+        .field
+          .control
+            button.button.is-link Activate Account
