@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const appController = require('../controllers/appController');
 const userController = require('../controllers/userController');
+const dataController = require('../controllers/dataController');
 
 /* GET home page. */
 router.get('/', appController.getIndex);
@@ -15,14 +16,15 @@ router.get('/forgot', appController.getForgetPassword);
 router.get('/activate', appController.getActivate);
 router.get('/login/resetlink/:token', appController.getResetPassword);
 router.get('/activate/activatelink/:token', appController.getConfirmActivate);
-router.get('/members', userController.isLoggedIn, appController.getMembersDirectory);
-router.get('/discovery', userController.isLoggedIn, appController.getDiscovery);
+router.get('/members', userController.isLoggedIn, userController.buildDirectory, appController.getMembersDirectory);
+router.get('/discovery', userController.isLoggedIn, userController.buildDiscovery, appController.getDiscovery);
 router.get('/update', userController.isLoggedIn, appController.getMembersUpdate);
 router.get('/resources', userController.isLoggedIn, appController.getResources);
 router.get('/delete', userController.isLoggedIn, appController.getDelete);
 router.get('/thankyou', appController.getApplied);
 router.get('/tc', appController.getTC);
 router.get('/privacy', appController.getPrivacy);
+router.get('/membersarea', appController.getHome);
 
 router.post(
   '/user/add',
@@ -57,5 +59,19 @@ router.post(
   userController.storePassword,
   userController.sendConfirmActivationEmail
 );
-
+router.post(
+  '/user/dirprof',
+  userController.buildProfile,
+  userController.authenticate,
+);
+router.post(
+  '/user/dirchallenge',
+  userController.buildChallenge,
+  userController.authenticate,
+);
+router.post(
+  '/user/request',
+  userController.sendRequest,
+  appController.getApplied
+);
 module.exports = router;
