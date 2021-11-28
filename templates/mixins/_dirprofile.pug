@@ -1,0 +1,92 @@
+mixin dirprofile
+  - var name = `${user[0].display_name}`;
+  - if (name === 'undefined') {name = '-';};
+  - var section = `${user[0].section}`;
+  - if (section === 'undefined') {section = '-';};
+  - var role = `${user[0].role}`;
+  - if (role === 'undefined') {role = '-';};
+  - var discord = `${user[0].discord}`;
+  - if (discord === 'undefined') {discord = '-';};
+  - var country = `${user[0].country}`;
+  - if (country === 'undefined') {country = '-';};
+  - var languages = `${user[0].languages}`;
+  - if (languages === 'undefined') {languages = '-';};
+  - var comp_pref = `${user[0].comp_pref}`;
+  - if (comp_pref === 'undefined') {comp_pref = '-';};
+  - var availability = `${user[0].availability}`;
+  - if (availability === 'undefined') {availability = '-';};
+  - var twitter = `${user[0].twitter}`;
+  - if (twitter === 'undefined') {twitter = '-';};
+  - var linkedin = `${user[0].linkedin}`;
+  - if (linkedin === 'undefined') {linkedin = '-';};
+  - var github = `${user[0].github}`;
+  - if (github === 'undefined') {github = '';};
+  - var kaggle = `${user[0].kaggle}`;
+  - if (kaggle === 'undefined') {kaggle = '';};
+  - var degree = `${user[0].degree}`;
+  - if (degree === 'undefined') {degree = '-';};
+  - var studies = `${user[0].studies}`;
+  - if (studies === 'undefined') {studies = '-';};
+  - var prog_lang = `${user[0].prog_lang}`;
+  - if (prog_lang === 'undefined') {prog_lang = '-';};
+  - var ind_exp = `${user[0].ind_exp}`;
+  - if (ind_exp === 'undefined') {ind_exp = '-';};
+
+
+
+  div.content
+    div.box
+      h3.is-4= name
+      p.is-grey(class="subtitle is-6")= role
+      div.tabs-with-content
+        div.tabs.is-boxed
+          ul
+            li
+              p
+                a Personal
+            li
+              p
+                a Social
+            li
+              p
+                a Academic
+            li
+              p
+                a Professional
+
+        div.tab-content
+          .cat Section:
+          p.value= section
+          .cat Country:
+          p.value= country
+          .cat Spoken Languages:
+          p.value= languages
+          .cat Preferences:
+          p.value= comp_pref
+          .cat Availability:
+          p.value= availability
+        div.tab-content
+          .cat=`Discord: `
+          p.value= discord
+          .cat=`Twitter: `
+          p
+            a(href=`https://www.twitter.com/`)= twitter
+          .cat=`Linkedin: `
+          p
+            a(href=linkedin)= linkedin
+          .cat=`Kaggle: `
+          p
+            a(href=kaggle)= kaggle
+          .cat=`GitHub: `
+          p
+            a(href=github)= github
+        div.tab-content
+          .cat=`Highest Degree: `
+          p.value= degree
+          .cat=`Areas of Study: `
+          p.value= studies
+        div.tab-content
+          .cat=`Programming Languages: `
+          p.value= prog_lang
+          .cat=`Industry Expertise: `
+          p.value= ind_exp
