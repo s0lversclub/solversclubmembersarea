@@ -8,6 +8,8 @@ const base = new Airtable({
   apiKey: process.env.AIRTABLE_API_KEY,
 }).base(process.env.AIRTABLE_BASE_ID);
 const table = base('users');
+const challenges = base('challenge_discovery');
+const requests = base('requests');
 
 // Start Helper Functions
 const findUser = async (email = undefined) => {
@@ -43,19 +45,12 @@ const generateResetUrl = (token, email) => {
 };
 
 const isUserApproved = async (email) => {
-  // const userExists = await findUser(email);
-  // console.log(userExists);
-  // if (!userExists) {
-  //   res.render('login', {
-  //     message: 'This Email does not exist.',
-  //   });
-  //   return;
-  // }
+
   if (email.get('approval') === 'Approved') {
-    console.log('Approved');
+//    console.log('Approved');
     return true;
   }
-  console.log('Pending Approval');
+//  console.log('Pending Approval');
   return false;
 };
 
@@ -64,6 +59,8 @@ const generateActivateUrl = (token, email) => {
   url = `activate/activatelink/${token}?${querystring.stringify({ email })}`;
   return url;
 };
+
+
 
 // End Helper Functions
 
@@ -91,11 +88,12 @@ exports.addUser = async (req, res, next) => {
     (err, record) => {
       if (err) {
         console.error(err);
-        console.log(section)
-        console.log(how)
         return;
       }
       req.body.id = record.getId();
+      res.render('thankyou', {
+        message: "We will get back to you with a response to your request within 48 hours. Happy solving!"
+      });
       next();
     }
   );
@@ -143,7 +141,6 @@ exports.confirmToken = async (req, res, next) => {
 exports.checkUser = async (req, res,next) => {
   const { email } = req.body;
   const userExists = await findUser(email);
-  console.log(userExists);
   if (!userExists) {
     res.render('login', {
       message: 'This Email does not exist',
@@ -174,8 +171,6 @@ exports.authenticate = (req, res, next) => {
               res.render('login', {
                 message: 'Username and password do not match',
               })
-//              console.log(err);
-              console.log('wrong password');
             }
           });
         }
@@ -438,17 +433,129 @@ exports.sendConfirmActivationEmail = async (req, res) => {
   });
 };
 
-// Empty fields
+// Members Directory
 
+exports.buildDirectory = async (req, res) => {
+  const options = {
+    filterByFormula: `approval = 'Approved'`,
+  };
+  const users = await data.getAirtableRecords(table, options);
+  const user = users.map(record => ({
+    display_name: record.get('display_name'),
+    email: record.get('email'),
+    role: record.get('role'),
+    section: record.get('section'),
+    discord: record.get('discord'),
+  }));
+  res.render('members',{user});
+};
 
+exports.buildProfile = async (req, res) => {
+  const { email } = req.body;
+  const options = {
+    filterByFormula: `email = '${email}'`,
+  };
+  const users = await data.getAirtableRecords(table, options);
+  const user = users.map(record => ({
+    email: record.get('email'),
+    display_name: record.get('display_name'),
+    role: record.get('role'),
+    section: record.get('section'),
+    country: record.get('country'),
+    languages: record.get('languages'),
+    comp_pref: record.get('comp_pref'),
+    availability: record.get('availability'),
+    discord: record.get('discord'),
+    twitter: record.get('twitter'),
+    linkedin: record.get('linkedin'),
+    kaggle: record.get('kaggle'),
+    github: record.get('github'),
+    degree: record.get('degree'),
+    studies: record.get('studies'),
+    prog_lang: record.get('prog_lang'),
+    ind_exp: record.get('ind_exp'),
+  }));
+  res.render('dirprofile', {user});
+//  next();
 
-// //set value for empty fields
-// let discordvalue = ${user.discord};
-// // if (`${user.discord}` === "") {
-// //   discordvalue = "discord value is empty";
-// // }
-// // else {
-// //   discordvalue = "discord value is not empty";
-// // }
-// document.getElementById("discord").innerHTML = discordvalue;
-// console.log(discordvalue);
+};
+
+// Challenge discovery
+
+exports.buildDiscovery = async (req, res) => {
+  const options = {
+    filterByFormula: `status = 'In progress'`,
+  };
+  const active_challenges = await data.getAirtableRecords(challenges, options);
+  const challenge = active_challenges.map(record => ({
+    title: record.get('title'),
+    platform: record.get('platform'),
+    section: record.get('section'),
+    status: record.get('status'),
+  }));
+  res.render('discovery',{challenge});
+};
+
+exports.buildChallenge = async (req, res) => {
+  const options = {
+    filterByFormula: `status = 'In progress'`,
+  };
+  const active_challenges = await data.getAirtableRecords(challenges, options);
+  const challenge = active_challenges.map(record => ({
+    title: record.get('title'),
+    platform: record.get('platform'),
+    section: record.get('section'),
+    status: record.get('status'),
+    teams: record.get('teams'),
+    prize: record.get('prize'),
+    end: record.get('end'),
+    link: record.get('link'),
+  }));
+  res.render('challenge',{challenge});
+};
+
+// Resources Request
+
+exports.sendRequest = async (req, res, next) => {
+  const {
+    teamcaptain,
+    team2,
+    team3,
+    team4,
+    team5,
+    section,
+    platform,
+    title,
+    link,
+    date,
+    resources,
+    resources_detail,
+    budget,
+    use,
+    contributions,
+    awareness  } = req.body;
+
+  const userExists = await findUser(teamcaptain);
+  if (!userExists) {
+    res.render('resources', {
+      message: 'Please use the e-mail you registered in Solvers Club with.',
+    });
+    return;
+  }
+
+  requests.create(
+    {
+      teamcaptain: teamcaptain,
+    },
+    (err, record) => {
+      if (err) {
+        console.error(err);
+        return;
+      }
+      res.render('thankyou', {
+        message: "We will get back to you with a response to your request within 48 hours. Happy solving!"
+      });
+      next();
+    }
+  );
+};
