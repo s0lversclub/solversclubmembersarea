@@ -1,0 +1,17 @@
+extends ../layouts/base
+include ../mixins/_unsubscribe
+
+block content
+  div(class="content is-large")
+    h1
+      .is-orange Unsubscribe
+
+  if (message)
+    .notification
+      =message
+  br
+  div.content
+
+    br
+    div.box
+      +unsubscribe
