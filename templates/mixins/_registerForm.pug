@@ -6,37 +6,30 @@ mixin registerForm
           small.is-grey="  (This will be displayed on your profile page.)"
         .control
           input.input(type='text' name="fullname" id="fullname" placeholder='First and Last Name' required)
+      br
       .field
         label.label(for="email") Email
-          small.is-grey="  (You will receive login details here.)"
+          small.is-grey="  (This will be your username on Solvers Club)"
         .control
           input.input(type='email' name="email" id="email" placeholder='Email' required)
-
-      .field
-        label.label(for="username") Username
-          small.is-grey="  (Required to access your account.)"
-        .control
-          input.input(type='text' name="username" id="username" placeholder='Username' required)
-
-
+      br
       .field
         label.label(for="password") Password
          small.is-grey="  (Required to access your account.)"
         .control
           input.input(type='password' name="password" id="password" placeholder='Password' required)
-
-
+      br
       .field
         label.label(for="section") Section
           small.is-grey="  (Please, choose the Section you are most interested in. You will be able to change this later.)"
         .control
           select.select(name="section" id="section" required)
-            option.input(value="AI") Artificial Intelligence
-            option.input(value="Cybersecurity") Cybersecurity
-            option.input(value="Blockchain") Blockchain
-            option.input(value="Engineering") Engineering
-            option.input(value="Robotics") Robotics
-            option.input(value="Biotechnology") Biotechnology
+            option.input(value=" AI") Artificial Intelligence
+            option.input(value=" Cybersecurity") Cybersecurity
+            option.input(value=" Blockchain") Blockchain
+            option.input(value=" Engineering") Engineering
+            option.input(value=" Robotics") Robotics
+            option.input(value=" Biotechnology") Biotechnology
 
       br
       .field
@@ -50,6 +43,11 @@ mixin registerForm
           textarea.textarea(name="team" id="team" placeholder='Please describe briefly' required)
       br
       .field
+        label.label(for="other") Anything else you'd like to share with us?
+        .control
+          textarea.textarea(name="other" id="other" placeholder='Please describe briefly')
+      br
+      .field
         label.label(for="how") How did you first hear from us?
         .control
           select.select(name="how" id="how" required)
@@ -57,8 +55,17 @@ mixin registerForm
             option.input(value="Friends") Friends
             option.input(value="University") University
             option.input(value="Other") Other
+      br
+      .field
+        input.checkbox(type='checkbox' name="accept_tc" id="accept_tc" required value="True")
+        span
+          a(href="/tc" target="new")=" I have read and accept the Solvers Club Terms and Conditions."
 
+      .field
+        input.checkbox(type='checkbox' name="accept_pg" id="accept_pg" required value="True")
+        span
+          a(href="privacy" target="new")=" I have read and accept the Solvers Club Privacy Guidelines."
       br
       .field
         .control
-          button.button.is-link Create Account
+          button.button.is-link Submit Application
