@@ -1,4 +1,4 @@
-include ../mixins/_loginForm
+include ../mixins/_newsletterForm
 .container
   nav.navbar(role="navigation", aria-label="main navigation")
       div.navbar-brand
@@ -16,3 +16,8 @@ include ../mixins/_loginForm
           a.navbar-item(href="/members") Directory
           a.navbar-item(href="/discovery") Challenges
           a.navbar-item(href="/resources") Resources
+          div(class="navbar-item has-dropdown is-hoverable")
+            a.navbar-link Newsletter
+            div.navbar-dropdown
+              a.navbar-item
+                +newsletterForm
