@@ -9,18 +9,14 @@ block content
     table.table
       thead
         tr
-          th
-            h3
-              .is-orange Name
-          th
-            h3
-              .is-orange Section
-          th
-            h3
-              .is-orange Role
-          th
-            h3
-              .is-orange Discord
+          th.table_head
+            .subtitle.is-white Name
+          th.table_head
+            .subtitle.is-white Section
+          th.table_head
+            .subtitle.is-white Role
+          th.table_head
+            .subtitle.is-white Discord
 
       tbody
         each n,i in user
