@@ -1,0 +1,9 @@
+mixin newsletterForm
+  form(action="/user/subscribe" method="POST")
+    .field
+      
+      .control
+        input.input(type='email' name="email" id="email" placeholder='Email')
+    .field
+      .control
+        button.button.is-link Subscribe
