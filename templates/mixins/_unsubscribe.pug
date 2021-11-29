@@ -1,0 +1,9 @@
+mixin unsubscribe
+  form(action="/user/unsubscribe" method="POST")
+    .field
+      label.label(for="email") Email
+      .control
+        input.input(type='email' name="email" id="email" placeholder='Email')
+    .field
+      .control
+        button.button.is-link Unsubscribe
