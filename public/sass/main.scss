@@ -52,10 +52,10 @@ iframe {
 };
 
 strong {
-  color: $blue-dark;
+  font-weight: bolder;
 }
 
-h2,h3,h4,h5,h6,p,nav,footer,label,td {
+h2,h3,h4,h5,h6,p,nav,footer,label {
   font-family: "Libre Franklin", sans-serif;
   color: $blue-dark;
 }
@@ -64,10 +64,13 @@ h1 {
   font-family:"Miriam Libre",sans-serif;
 }
 
-td {
-  vertical-align: bottom;
+td,thead,th,tr {
+  vertical-align: middle;
 }
 
+.table_head {
+  background: $blue-dark;
+}
 
 .value,
 .label,
@@ -84,10 +87,6 @@ td {
   font-size: smaller;
 }
 
-.card {
-  min-height:415px;
-}
-
 .is-orange {
   color: $orange;
 }
@@ -97,6 +96,10 @@ td {
 
 .is-grey {
   color: $grey;
+}
+
+.is-white {
+  color: $white;
 }
 
 .is-text-button {
@@ -148,7 +151,7 @@ td {
 }
 
 .tabs-with-content .tab-content {
-  padding: 1rem;
+  padding: 2rem;
   display: none;
 }
 
@@ -165,6 +168,7 @@ td {
 .navbar-link {
   color: $blue-dark;
   font-weight: 800;
+  font-family:"Miriam Libre",sans-serif;
 }
 
 .navbar-item img {
