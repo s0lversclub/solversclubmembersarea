@@ -10,9 +10,10 @@ const base = new Airtable({
 const table = base('users');
 const challenges = base('challenge_discovery');
 const requests = base('requests');
+const newsletter = base('subscribers');
 
 // Start Helper Functions
-const findUser = async (email = undefined) => {
+const findUser = async (email = undefined, table) => {
   let recordExists = false;
   let options = {};
   options = {
@@ -65,9 +66,9 @@ const generateActivateUrl = (token, email) => {
 // End Helper Functions
 
 exports.addUser = async (req, res, next) => {
-  const { fullname, email, section, achievements, team, how } = req.body;
+  const { fullname, email, section, achievements, team, how, other, accept_pg, accept_tc } = req.body;
 
-  const userExists = await findUser(email);
+  const userExists = await findUser(email, table);
 
   if (userExists) {
     res.render('login', {
@@ -84,6 +85,10 @@ exports.addUser = async (req, res, next) => {
       achievements,
       team,
       how: how,
+      other,
+      accept_tc,
+      accept_pg,
+
     },
     (err, record) => {
       if (err) {
@@ -91,9 +96,9 @@ exports.addUser = async (req, res, next) => {
         return;
       }
       req.body.id = record.getId();
-      res.render('thankyou', {
-        message: "We will get back to you with a response to your request within 48 hours. Happy solving!"
-      });
+      // res.render('thankyou', {
+      //   message: "We will get back to you with a response to your application within 48 hours. Happy solving!"
+      // });
       next();
     }
   );
@@ -140,7 +145,7 @@ exports.confirmToken = async (req, res, next) => {
 
 exports.checkUser = async (req, res,next) => {
   const { email } = req.body;
-  const userExists = await findUser(email);
+  const userExists = await findUser(email, table);
   if (!userExists) {
     res.render('login', {
       message: 'This Email does not exist',
@@ -209,7 +214,7 @@ exports.logout = (req, res) => {
 exports.addToken = async (req, res, next) => {
   const { email } = req.body;
   // Check that the user exists. We wrote this helper function already in Part 1
-  const userExists = await findUser(email);
+  const userExists = await findUser(email, table);
   if (!userExists) {
     res.render('/user/forgot', {
       message: 'Email already exists!',
@@ -251,7 +256,7 @@ exports.addToken = async (req, res, next) => {
 exports.addActivationToken = async (req, res, next) => {
   const { email, accept_tc, accept_pg } = req.body;
   // Check that the user exists. We wrote this helper function already in Part 1
-  const userExists = await findUser(email);
+  const userExists = await findUser(email, table);
 
   if (!userExists) {
     res.render('activate', {
@@ -497,8 +502,9 @@ exports.buildDiscovery = async (req, res) => {
 };
 
 exports.buildChallenge = async (req, res) => {
+  const { title } = req.body;
   const options = {
-    filterByFormula: `status = 'In progress'`,
+    filterByFormula: `title = '${title}'`,
   };
   const active_challenges = await data.getAirtableRecords(challenges, options);
   const challenge = active_challenges.map(record => ({
@@ -535,26 +541,105 @@ exports.sendRequest = async (req, res, next) => {
     contributions,
     awareness  } = req.body;
 
-  const userExists = await findUser(teamcaptain);
+  const userExists = await findUser(teamcaptain, table);
   if (!userExists) {
     res.render('resources', {
-      message: 'Please use the e-mail you registered in Solvers Club with.',
+      message: 'Please use the email you registered in Solvers Club with.',
     });
     return;
   }
 
   requests.create(
     {
-      teamcaptain: teamcaptain,
+      teamcaptain,
+      team2,
+      team3,
+      team4,
+      team5,
+      section,
+      platform,
+      title,
+      link,
+      date,
+      resources,
+      resources_detail,
+      budget,
+      use,
+      contributions,
+      awareness,
     },
     (err, record) => {
       if (err) {
         console.error(err);
         return;
       }
-      res.render('thankyou', {
-        message: "We will get back to you with a response to your request within 48 hours. Happy solving!"
-      });
+      // res.render('thankyou', {
+      //   message: "We will get back to you with a response to your request within 48 hours. Happy solving!"
+      // });
+      next();
+    }
+  );
+};
+
+// Newsletter
+
+exports.mailSubscribe = async (req, res, next) => {
+  const {
+    email
+  } = req.body;
+
+  const userExists = await findUser(email, newsletter);
+  if (userExists) {
+    res.render('newsletter', {
+      message: 'This email is already registered.',
+    });
+    return;
+  }
+
+  newsletter.create(
+    {
+      email,
+    },
+    (err, record) => {
+      if (err) {
+        console.error(err);
+        return;
+      }
+      // res.render('thankyou', {
+      //   message: "You have successfully subscribed to our newsletter. Happy solving!"
+      // });
+      next();
+    }
+  );
+};
+
+exports.mailUnsubscribe = async (req, res, next) => {
+  const {
+    email
+  } = req.body;
+
+  const userExists = await findUser(email, newsletter);
+  if (!userExists) {
+    res.render('newsletter', {
+      message: 'This email is not registered.',
+    });
+    return;
+  }
+  const options = {
+    filterByFormula: `email = '${email}'`,
+  };
+  const users = await data.getAirtableRecords(newsletter, options);
+  const user = users.map(record => ({
+    id: record.getId(),
+  }));
+  newsletter.destroy(user[0].id,(err, record) => {
+      if (err) {
+        console.error(err);
+        return;
+      }
+      // res.render('thankyou', {
+      //   message: "You have successfully unsubscibed to our newsletter. Happy solving!"
+      // });
       next();
     }
   );
