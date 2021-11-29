@@ -12799,17 +12799,20 @@ iframe {
   height: 338px; }
 
 strong {
-  color: #00406C; }
+  font-weight: bolder; }
 
-h2, h3, h4, h5, h6, p, nav, footer, label, td {
+h2, h3, h4, h5, h6, p, nav, footer, label {
   font-family: "Libre Franklin", sans-serif;
   color: #00406C; }
 
 h1 {
   font-family: "Miriam Libre",sans-serif; }
 
-td {
-  vertical-align: bottom; }
+td, thead, th, tr {
+  vertical-align: middle; }
+
+.table_head {
+  background: #00406C; }
 
 .value,
 .label,
@@ -12823,9 +12826,6 @@ td {
   color: #878786;
   font-size: smaller; }
 
-.card {
-  min-height: 415px; }
-
 .is-orange {
   color: #C99600; }
 
@@ -12834,6 +12834,9 @@ td {
 
 .is-grey {
   color: #878786; }
+
+.is-white {
+  color: #ffffff; }
 
 .is-text-button {
   border: 0;
@@ -12871,7 +12874,7 @@ td {
   margin-bottom: 0; }
 
 .tabs-with-content .tab-content {
-  padding: 1rem;
+  padding: 2rem;
   display: none; }
 
 .tabs-with-content .tab-content.is-active {
@@ -12883,7 +12886,8 @@ td {
 .navbar-item,
 .navbar-link {
   color: #00406C;
-  font-weight: 800; }
+  font-weight: 800;
+  font-family: "Miriam Libre",sans-serif; }
 
 .navbar-item img {
   max-height: 40px; }
