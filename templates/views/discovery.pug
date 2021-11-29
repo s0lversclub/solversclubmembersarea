@@ -9,18 +9,14 @@ block content
     table.table
       thead
         tr
-          th
-            h3
-              .is-orange Title
-          th
-            h3
-              .is-orange Section
-          th
-            h3
-              .is-orange Platform
-          th
-            h3
-              .is-orange Status
+          th.table_head
+            .subtitle.is-white Title
+          th.table_head
+            .subtitle.is-white Section
+          th.table_head
+            .subtitle.is-white Platform
+          th.table_head
+            .subtitle.is-white Status
 
       tbody
         each n,i in challenge
@@ -34,6 +30,7 @@ block content
           - if (status === 'undefined') {status = '-';};
 
           form(action="/user/dirchallenge" method="POST")
+            input(type="hidden" id="title" name="title" value=`${challenge[i].title}`)
             tr
               td
                 a
