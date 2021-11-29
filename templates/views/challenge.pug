@@ -8,8 +8,8 @@ block content
   - if (platform === 'undefined') {platform = '-';};
   - var status = `${challenge[0].status}`;
   - if (status === 'undefined') {status = '-';};
-  - var date = `${challenge[0].date}`;
-  - if (date === 'undefined') {date = '-';};
+  - var end = `${challenge[0].end}`;
+  - if (end === 'undefined') {end = '-';};
   - var teams = `${challenge[0].teams}`;
   - if (teams === 'undefined') {teams = '-';};
   - var prize = `${challenge[0].prize}`;
@@ -28,7 +28,7 @@ block content
       .cat Status:
       p.value= status
       .cat Deadline:
-      p.value= date
+      p.value= end
       .cat Teams:
       p.value= teams
       .cat Prizes:
