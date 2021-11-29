@@ -1,0 +1,23 @@
+extends ../layouts/base
+include ../mixins/_newsletterForm
+
+block content
+  div(class="content is-large")
+    h1
+      .is-orange Newsletter
+
+  if (message)
+    .notification
+      =message
+  br
+  div.content
+    h3 Subscribe to our monthly newsletter to stay up to date of:
+      ul
+        li New challenges launched.
+        li Team news and competition updates.
+        li Exclusive resources and rewards available for our members.
+        li Featured member profiles.
+        li A review of winning solutions.
+    br
+    div.box
+      +newsletterForm
