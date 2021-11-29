@@ -39,7 +39,7 @@ exports.getPrivacy = (req, res) => {
 };
 
 
-exports.getApplied = (req, res) => {
+exports.getThankyou = (req, res) => {
   res.render('thankyou', {
     title: 'Thank you!',
   });
@@ -108,5 +108,17 @@ exports.getConfirmActivate = (req, res) => {
   res.render('confirmactivate', {
     token: req.params.token,
     email: req.query.email,
+  });
+};
+
+exports.getSubscribe = (req, res) => {
+  res.render('newsletter', {
+    title: 'Newsletter',
+  });
+};
+
+exports.getUnsubscribe = (req, res) => {
+  res.render('unsubscribe', {
+    title: 'Unsubscribe',
   });
 };
