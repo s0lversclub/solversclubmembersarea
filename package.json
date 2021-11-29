@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./start.js",
+    "dev": "node ./start.js",
     "watch": "nodemon ./start.js --ignore public/",
     "assets": "webpack --watch",
-    "dev": "concurrently \"npm run watch\" \"npm run assets\" --names \"💻,📦\" --prefix name",
+    "start": "concurrently \"npm run watch\" \"npm run assets\" --names \"💻,📦\" --prefix name",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
