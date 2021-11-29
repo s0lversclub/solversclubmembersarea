@@ -21,16 +21,18 @@ router.get('/discovery', userController.isLoggedIn, userController.buildDiscover
 router.get('/update', userController.isLoggedIn, appController.getMembersUpdate);
 router.get('/resources', userController.isLoggedIn, appController.getResources);
 router.get('/delete', userController.isLoggedIn, appController.getDelete);
-router.get('/thankyou', appController.getApplied);
+router.get('/thankyou', appController.getThankyou);
 router.get('/tc', appController.getTC);
 router.get('/privacy', appController.getPrivacy);
 router.get('/membersarea', appController.getHome);
+router.get('/newsletter', appController.getSubscribe);
+router.get('/unsubscribe', appController.getUnsubscribe);
 
 router.post(
   '/user/add',
   userController.addUser,
   userController.storePassword,
-  appController.getApplied
+  appController.getThankyou
 );
 router.post(
   '/user/auth',
@@ -72,6 +74,16 @@ router.post(
 router.post(
   '/user/request',
   userController.sendRequest,
-  appController.getApplied
+  appController.getThankyou
+);
+router.post(
+  '/user/subscribe',
+  userController.mailSubscribe,
+  appController.getThankyou
+);
+router.post(
+  '/user/unsubscribe',
+  userController.mailUnsubscribe,
+  appController.getThankyou
 );
 module.exports = router;
