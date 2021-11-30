@@ -496,7 +496,6 @@ exports.buildDiscovery = async (req, res) => {
     title: record.get('title'),
     platform: record.get('platform'),
     section: record.get('section'),
-    status: record.get('status'),
   }));
   res.render('discovery',{challenge});
 };
@@ -509,11 +508,13 @@ exports.buildChallenge = async (req, res) => {
   const active_challenges = await data.getAirtableRecords(challenges, options);
   const challenge = active_challenges.map(record => ({
     title: record.get('title'),
+    description: record.get('description'),
     platform: record.get('platform'),
     section: record.get('section'),
+    sponsor: record.get('sponsor'),
     status: record.get('status'),
-    teams: record.get('teams'),
     prize: record.get('prize'),
+    launch: record.get('launch'),
     end: record.get('end'),
     link: record.get('link'),
   }));
