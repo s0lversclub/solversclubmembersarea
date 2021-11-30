@@ -31,9 +31,6 @@ mixin profile
   - if (prog_lang === 'undefined') {prog_lang = '-';};
   - var ind_exp = `${user.ind_exp}`;
   - if (ind_exp === 'undefined') {ind_exp = '-';};
-
-
-
   div.content
     div.box
       h3.is-4= name
@@ -42,17 +39,21 @@ mixin profile
         div.tabs.is-boxed
           ul
             li
-              p
-                a Personal
+              a
+                span(class="icon is-small")
+                  i(class="fas fa-user" aria-hidden="true")
             li
-              p
-                a Social
+              a
+                span(class="icon is-small")
+                  i(class="fas fa-thumbs-up" aria-hidden="true")
             li
-              p
-                a Academic
+              a
+                span(class="icon is-small")
+                  i(class="fas fa-graduation-cap" aria-hidden="true")
             li
-              p
-                a Professional
+              a
+                span(class="icon is-small")
+                  i(class="fas fa-briefcase" aria-hidden="true")
 
         div.tab-content
           .cat Section:
