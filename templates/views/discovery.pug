@@ -1,40 +1,59 @@
 extends ../layouts/base
 block content
+  - var j = [];
+  - var k = [];
+
   div(class="content is-large")
     h1
       .is-orange Challenge Discovery
   div.content
     h3 Browse all challenges.
     br
-    table.table
-      thead
-        tr
-          th.table_head
-            .subtitle.is-white Title
-          th.table_head
-            .subtitle.is-white Section
-          th.table_head
-            .subtitle.is-white Platform
-          th.table_head
-            .subtitle.is-white Status
-
-      tbody
-        each n,i in challenge
+    each n,i in challenge
+      if (i%2 === 0)
+        - j.push(i)
+      else
+        - k.push(i)
+    div.columns
+      div.column.is-6
+        each i in j
           - var title = `${challenge[i].title}`;
           - if (title === 'undefined') {title = '-';};
           - var section = `${challenge[i].section}`;
           - if (section === 'undefined') {section = '-';};
-          - var platform = `${challenge[i].role}`;
+          - var platform = `${challenge[i].platform}`;
           - if (platform === 'undefined') {platform = '-';};
           - var status = `${challenge[i].status}`;
           - if (status === 'undefined') {status = '-';};
-
           form(action="/user/dirchallenge" method="POST")
             input(type="hidden" id="title" name="title" value=`${challenge[i].title}`)
-            tr
-              td
+            div.box
+              p
                 a
-                  button.button.is-text-button.is-orange= title
-              td= section
-              td= platform
-              td= status
+                  button.button.is-text-button.is-orange.is-large= title
+              .cat Section:
+              p.value= section
+              .cat Platform:
+              p.value= platform
+            p
+      div.column.is-6
+        each i in k
+          - var title = `${challenge[i].title}`;
+          - if (title === 'undefined') {title = '-';};
+          - var section = `${challenge[i].section}`;
+          - if (section === 'undefined') {section = '-';};
+          - var platform = `${challenge[i].platform}`;
+          - if (platform === 'undefined') {platform = '-';};
+          - var status = `${challenge[i].status}`;
+          - if (status === 'undefined') {status = '-';};
+          form(action="/user/dirchallenge" method="POST")
+            input(type="hidden" id="title" name="title" value=`${challenge[i].title}`)
+            div.box
+              p
+                a
+                  button.button.is-text-button.is-orange.is-large= title
+              .cat Section:
+              p.value= section
+              .cat Platform:
+              p.value= platform
+            p
