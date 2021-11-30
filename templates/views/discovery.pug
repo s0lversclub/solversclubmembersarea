@@ -14,8 +14,8 @@ block content
         - j.push(i)
       else
         - k.push(i)
-    div.columns
-      div.column.is-6
+    div.columns.is-centered
+      div.column.is-5
         each i in j
           - var title = `${challenge[i].title}`;
           - if (title === 'undefined') {title = '-';};
@@ -36,7 +36,7 @@ block content
               .cat Platform:
               p.value= platform
             p
-      div.column.is-6
+      div.column.is-5
         each i in k
           - var title = `${challenge[i].title}`;
           - if (title === 'undefined') {title = '-';};
