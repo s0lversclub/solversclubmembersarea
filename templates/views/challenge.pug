@@ -2,6 +2,10 @@ extends ../layouts/base
 block content
   - var title = `${challenge[0].title}`;
   - if (title === 'undefined') {title = '-';};
+  - var description = `${challenge[0].description}`;
+  - if (description === 'undefined') {description = '-';};
+  - var launch = `${challenge[0].launch}`;
+  - if (launch === 'undefined') {launch = '-';};
   - var section = `${challenge[0].section}`;
   - if (section === 'undefined') {section = '-';};
   - var platform = `${challenge[0].platform}`;
@@ -12,6 +16,8 @@ block content
   - if (end === 'undefined') {end = '-';};
   - var teams = `${challenge[0].teams}`;
   - if (teams === 'undefined') {teams = '-';};
+  - var sponsor = `${challenge[0].sponsor}`;
+  - if (sponsor === 'undefined') {sponsor = '-';};
   - var prize = `${challenge[0].prize}`;
   - if (prize === 'undefined') {prize = '-';};
   - var link = `${challenge[0].link}`;
@@ -21,19 +27,31 @@ block content
       h1
         .is-orange Challenge Details
     div.box
-      h3.is-4= title
-      p.is-grey(class="subtitle is-6")= platform
-      .cat Section:
-      p.value= section
-      .cat Status:
-      p.value= status
-      .cat Deadline:
-      p.value= end
-      .cat Teams:
-      p.value= teams
-      .cat Prizes:
-      p.value= prize
-      .cat Link:
-      p.value
-        a(href=link target="-blank") Access
+      div.columns
+        div.column.is-10
+          h3= title
+          p.subtitle= description
+        div.column
+          h3
+            .is-orange= section
+          p.subtitle= `$`+prize
+      p
+        a(href=link target="_blank") Visit challenge website
+      div.columns
+        div.column.is-2
+          .cat Sponsor:
+          p.value= sponsor
+        div.column.is-2
+          .cat Platform / Organizer
+          p.value= platform
+
+      p
+      div.columns
+        div.column.is-2
+          .cat Launch:
+          p.value= launch
+        div.column.is-2
+          .cat Deadline:
+          p.value= end
+
     a(href="/discovery") <- Back
