@@ -496,6 +496,8 @@ exports.buildDiscovery = async (req, res) => {
     title: record.get('title'),
     platform: record.get('platform'),
     section: record.get('section'),
+    status: record.get('status'),
+    end: record.get('end'),
   }));
   res.render('discovery',{challenge});
 };
