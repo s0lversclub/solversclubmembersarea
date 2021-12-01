@@ -23,8 +23,8 @@ block content
           - if (section === 'undefined') {section = '-';};
           - var platform = `${challenge[i].platform}`;
           - if (platform === 'undefined') {platform = '-';};
-          - var status = `${challenge[i].status}`;
-          - if (status === 'undefined') {status = '-';};
+          - var end = `${challenge[i].end}`;
+          - if (end === 'undefined') {end = '-';};
           form(action="/user/dirchallenge" method="POST")
             input(type="hidden" id="title" name="title" value=`${challenge[i].title}`)
             div.box
@@ -35,6 +35,8 @@ block content
               p.value= section
               .cat Platform:
               p.value= platform
+              .cat Deadline:
+              p.value= end
             p
       div.column.is-5
         each i in k
@@ -44,8 +46,8 @@ block content
           - if (section === 'undefined') {section = '-';};
           - var platform = `${challenge[i].platform}`;
           - if (platform === 'undefined') {platform = '-';};
-          - var status = `${challenge[i].status}`;
-          - if (status === 'undefined') {status = '-';};
+          - var end = `${challenge[i].end}`;
+          - if (end === 'undefined') {end = '-';};
           form(action="/user/dirchallenge" method="POST")
             input(type="hidden" id="title" name="title" value=`${challenge[i].title}`)
             div.box
@@ -56,4 +58,6 @@ block content
               p.value= section
               .cat Platform:
               p.value= platform
+              .cat Deadline:
+              p.value= end
             p
